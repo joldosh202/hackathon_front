@@ -6,9 +6,9 @@ import { register } from '../store/authSlice';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { user } = useSelector(state => state.auth);
+  //   const { user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
-  console.log(user);
+  //   console.log(user);
 
   const loginBtn = async () => {
     await dispatch(
@@ -18,9 +18,8 @@ const Login = () => {
       })
     );
   };
-  function check() {
-    console.log(user);
-  }
+  //   const { userEmail } = useSelector(state => state.auth);
+  //   console.log(setUserEmail);
 
   return (
     <div>
@@ -40,7 +39,6 @@ const Login = () => {
       />
 
       <button onClick={loginBtn}>login </button>
-      <button onClick={check}> check</button>
     </div>
   );
 };

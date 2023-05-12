@@ -9,9 +9,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
-  const { user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
-  console.log(user);
   const registerBtn = async () => {
     await dispatch(
       register({

@@ -1,6 +1,5 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-
 export const register = createAsyncThunk(
   'auth/register',
   async function (
@@ -46,9 +45,13 @@ export const login = createAsyncThunk(
         'http://34.172.10.128/api/v1/account/login/',
         login
       );
-
-      // console.log(JSON.parse(response.data.email));
       console.log(response);
+      const data2 = JSON.parse(response.config.data);
+      const token = response.data;
+      const emailValue = data2.email;
+      localStorage.setItem('email', emailValue);
+      localStorage.setItem('token', JSON.stringify(token));
+      // dispatch(userEmail({ email: emailValue }));
 
       if (!response.ok) {
         throw new Error("Can't add task. Server error.");
@@ -66,21 +69,24 @@ const setError = (state, action) => {
   state.error = action.payload;
 };
 
+export const setUserEmail = createAction('auth/setUserEmail');
+
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: '',
+    user: null,
     //  status: null,
     //  error: null,
   },
   reducers: {
-    registerUser(state, action) {
-      // state.user = action.payload.email;
-    },
+    registerUser(state, action) {},
     loginUser(state, action) {
       state.user = action.payload.email;
       console.log(state.user);
     },
+    //  userEmail: (state, action) => {
+    //    state.user = action.payload;
+    //  },
   },
   extraReducers: builder => {
     // builder.addCase(register, (state, action) => {});
@@ -92,7 +98,7 @@ const authSlice = createSlice({
     builder.addCase(login.pending);
     builder.addCase(login.rejected);
     builder.addCase(login.fulfilled, (state, action) => {
-      state.user = action.payload.email;
+      state.user = action.payload;
     });
   },
 });
