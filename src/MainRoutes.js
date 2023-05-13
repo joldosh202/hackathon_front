@@ -1,17 +1,15 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
-import Register from './components/Register';
-import Login from './components/Login';
-import Test from './components/test';
+import RegisterRedux from './components/RegisterRedux';
+import LoginRedux from './components/LoginRedux';
 
 const MainRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/test" element={<Test />} />
+      <Route path="/register" element={<RegisterRedux />} />
+      <Route path="/loginrtk" element={<LoginRedux />} />
     </Routes>
   );
 };

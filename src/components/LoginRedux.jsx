@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { login } from '../store/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../store/authSlice';
-const Login = () => {
+const LoginRedux = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   //   const { user } = useSelector(state => state.auth);
@@ -43,4 +43,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginRedux;

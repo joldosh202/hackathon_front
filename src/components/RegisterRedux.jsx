@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useRegisterMutation } from '../store/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../store/authSlice';
-const Register = () => {
+const RegisterRedux = () => {
   const [first_name, setFirstName] = useState('');
   const [last_name, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -61,4 +61,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterRedux;
