@@ -10,6 +10,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import React from 'react';
+import FinTarget from './FinTarget';
 
 const Home = () => {
   const categStyles = {
@@ -24,7 +25,7 @@ const Home = () => {
         w="100%"
         h="650"
       >
-        <Grid templateColumns="repeat(7, 1fr)" gap={0} pr="20" pl="20" pt="10">
+        <Grid templateColumns="repeat(7, 1fr)" gap={0} pr="20" pl="20" pt="5">
           <GridItem
             ml="20"
             as="main"
@@ -134,14 +135,14 @@ const Home = () => {
             src={require('../imgs/Rectangle 80.png')}
           />
         </Box>
-        <Box position="absolute" top="150px">
+        <Box position="absolute" top="100px">
           <Flex justify="space-between">
             <Box
               display="flex"
               flexDirection="column"
               justifyContent="space-between"
               h="300px"
-              ml="100px"
+              ml="130px"
               mt="20"
             >
               <Box>
@@ -210,13 +211,14 @@ const Home = () => {
       </Box>
 
       {/* ////////budget////////// */}
-      <Box pl="100px" pr="100px">
+      <Box pl="100px" pr="100px" pb="50px">
         <Flex justify="space-between">
           <Box
-          // display="flex"
-          // flexDirection="column"
-          // justifyContent="space-between"
-          // height="120px"
+            // display="flex"
+            // flexDirection="column"
+            // justifyContent="space-between"
+            // height="120px"
+            ml="50px"
           >
             <Box fontSize="30px" fontWeight="700">
               Бюджеты
@@ -301,6 +303,7 @@ const Home = () => {
           </Box>
         </Flex>
       </Box>
+      <FinTarget />
     </Box>
   );
 };
