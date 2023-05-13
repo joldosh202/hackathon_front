@@ -20,8 +20,6 @@ const Register = () => {
         password2,
       })
     );
-
-    // any other logic that depends on the success of the registration request
   };
   return (
     <div>

@@ -20,34 +20,26 @@ const Home = () => {
   return (
     <Box>
       <Box
-        bg="radial-gradient(96.05% 397.61% at 123.3% -27.36%, #EBBB55 0%, #546762 91.26%, #465F63 100%)"
+        // bg="radial-gradient(96.05% 397.61% at 123.3% -27.36%, #EBBB55 0%, #546762 91.26%, #465F63 100%)"
         w="100%"
         h="650"
       >
-        <Grid templateColumns="repeat(10, 1fr)" gap={0} pr="20" pl="20" pt="10">
+        <Grid templateColumns="repeat(7, 1fr)" gap={0} pr="20" pl="20" pt="10">
           <GridItem
-            ml="5"
+            ml="20"
             as="main"
-            colSpan="2"
+            colSpan="1"
             h="10"
             display="flex"
             height="50px"
             width="108px"
-          >
-            <Image src={require('../imgs/лого.png')} />
-          </GridItem>
-          <GridItem
-            display="flex"
             alignItems="center"
-            as="aside"
-            colSpan="1"
             justifyContent="center"
-            h="10"
+            pb="17px"
           >
-            <Box color="white" fontSize="18">
-              Счет
-            </Box>
+            <Image src={require('../imgs/лого (1).png')} />
           </GridItem>
+
           <GridItem
             display="flex"
             alignItems="center"
@@ -56,7 +48,7 @@ const Home = () => {
             colSpan="1"
             h="10"
           >
-            <Box color="white" fontSize="18">
+            <Box fontSize="20px" fontWeight="700">
               Бюджет
             </Box>
           </GridItem>
@@ -65,10 +57,10 @@ const Home = () => {
             alignItems="center"
             as="aside"
             justifyContent="center"
-            colSpan="2"
+            colSpan="1"
             h="10"
           >
-            <Box color="white" fontSize="18">
+            <Box fontSize="20px" fontWeight="700">
               Финансовые цели
             </Box>
           </GridItem>
@@ -80,7 +72,7 @@ const Home = () => {
             colSpan="1"
             h="10"
           >
-            <Box color="white" fontSize="18">
+            <Box fontSize="20px" fontWeight="700">
               Статистика
             </Box>
           </GridItem>
@@ -92,32 +84,57 @@ const Home = () => {
             justifyContent="center"
             h="10"
           >
-            <Box color="white" fontSize="18">
+            <Box fontSize="20px" fontWeight="700">
               Транзакции
             </Box>
           </GridItem>
           <GridItem
+            display="flex"
+            alignItems="center"
             as="aside"
-            colSpan="2"
+            colSpan="1"
+            justifyContent="center"
+            h="10"
+          >
+            <Button
+              colorScheme="yellow"
+              w="163px"
+              h="39px"
+              borderRadius="20px"
+              fontSize="20px"
+              fontWeight="500"
+            >
+              Регистрация
+            </Button>
+          </GridItem>
+          <GridItem
+            as="aside"
+            colSpan="1"
             h="10"
             display="flex"
+            alignItems="center"
             justifyContent="center"
           >
-            <Image
-              src={require('../imgs/free-icon-settings-945147-removebg-preview 1.png')}
-            />
+            <Button
+              colorScheme="yellow"
+              w="111px"
+              h="39px"
+              borderRadius="20px"
+              fontSize="20px"
+              fontWeight="500"
+            >
+              Вход
+            </Button>
           </GridItem>
-          <Box
-            right="300px"
-            top="100px"
-            position="absolute"
-            fontSize="20"
-            color="yellow"
-          >
-            Вход
-          </Box>
         </Grid>
         <Box>
+          <Image
+            // position="absolute"
+            w="100%"
+            src={require('../imgs/Rectangle 80.png')}
+          />
+        </Box>
+        <Box position="absolute" top="150px">
           <Flex justify="space-between">
             <Box
               display="flex"
@@ -128,195 +145,159 @@ const Home = () => {
               mt="20"
             >
               <Box>
-                <Box color="white" w="500px" fontSize={43}>
+                <Box w="500px" fontSize={43} color="white">
                   Управление личными финансами
                 </Box>
-                <Box color="white" w="400px" fontSize={25}>
-                  Отслеживание своих расходов и доходов
+                <Box w="400px" fontSize={25} color="white">
+                  Стройте свои бюджеты легко и просто__ в несколько шагов
                 </Box>
               </Box>
               <Box mt="">
-                <Button colorScheme="yellow" pl="25px" pr="25px">
+                <Button
+                  colorScheme="yellow"
+                  w="223px"
+                  h="39px"
+                  borderRadius="20px"
+                  fontWeight="700"
+                >
                   Создать счет
                 </Button>
               </Box>
             </Box>
-            <Box>
-              {/* <Box
-                ml="400px"
-                mt="10px"
-                position="absolute"
-                fontSize="20"
-                color="yellow"
-              >
-                Вход
-              </Box> */}
-              <Image w="800px" src={require('../imgs/фото главный.png')} />
-            </Box>
           </Flex>
         </Box>
+        {/* ///////////////////// */}
+        <Box>
+          <Image
+            position="absolute"
+            left="700px"
+            top="250px"
+            src={require('../imgs/Arrow 6.png')}
+            zIndex="10"
+          />
+          <Image
+            position="absolute"
+            right="150px"
+            top="100px"
+            src={require('../imgs/Ellipse 45.png')}
+          />
+          <Image
+            position="absolute"
+            top="150px"
+            right="190px"
+            src={require('../imgs/Group 47.png')}
+          />
+          <Image
+            position="absolute"
+            left="650px"
+            top="360px"
+            src={require('../imgs/Group 43.png')}
+          />
+          <Image
+            position="absolute"
+            left="780px"
+            top="270px"
+            src={require('../imgs/Group 42.png')}
+          />
+          <Image
+            position="absolute"
+            left="970px"
+            top="240px"
+            src={require('../imgs/Group 87.png')}
+          />
+        </Box>
+        {/* ///////////////////////// */}
       </Box>
+
       {/* ////////budget////////// */}
-      <Box mt="10" pb="30px">
-        <Image
-          position="absolute"
-          src={require('../imgs/image 31 (1)-PhotoRoom 4.png')}
-        />
-        <Flex justify="space-around">
-          <Box>
-            <Box sx={categStyles}>
-              <Box fontSize="30">Бюджеты</Box>
-              <Box fontSize="20">150 000 som</Box>
-              <Image src={require('../imgs/image 32.png')} />
+      <Box pl="100px" pr="100px">
+        <Flex justify="space-between">
+          <Box
+          // display="flex"
+          // flexDirection="column"
+          // justifyContent="space-between"
+          // height="120px"
+          >
+            <Box fontSize="30px" fontWeight="700">
+              Бюджеты
             </Box>
-            <Box>
-              <Box textAlign="center" fontSize="30" mb="5">
-                Кредиты
-              </Box>
-              <Box display="flex" w="400px" justifyContent="space-between">
-                <Box sx={categStyles}>
-                  <Image src={require('../imgs/optima 1.png')} />
-                  <Box>Оптима Банк</Box>
-                </Box>
-                <Box>
-                  <Image src={require('../imgs/мбанк 1.png')} />
-                  <Box>Мбанк</Box>
-                </Box>
-                <Box
-                  display="flex"
-                  flexDirection="column"
-                  justifyContent="space-between"
-                  alignItems="center"
-                >
-                  <Image mt="3" w="30px" src={require('../imgs/плюс.png')} />
-                  <Box>Категория</Box>
-                </Box>
-              </Box>
+            <Box fontWeight="600" w="200px" mt="10px">
+              Накопите на мечту контролируя бюджет
             </Box>
+            <Button
+              colorScheme="yellow"
+              mt="25px"
+              w="201px"
+              h="39px"
+              borderRadius="20px"
+            >
+              Подробнее
+            </Button>
           </Box>
-          <Box>
-            <Card border="1px" w="470px" mb="10">
-              <CardBody>
+          <Box display="flex" w="720px">
+            <Box w="200px">
+              <Box
+                position="absolute"
+                top="528px"
+                h="123px"
+                bg="black"
+                w="1px"
+                right="795px"
+              ></Box>
+              <Image src={require('../imgs/бюджет 1стр.png')} />
+              <Box fontSize="22px">Кредиты</Box>
+              <Box>Узнать, сколько вам одобрит банк</Box>
+            </Box>
+            <Box mt="30px" w="200px">
+              <Box
+                display="flex"
+                justifyContent="center"
+                flexDirection="column"
+              >
                 <Box
-                  w="100px"
-                  h="100px"
-                  bgColor="yellow.300"
-                  boxShadow=" 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                  borderRadius="50%"
-                  top="20px"
-                  justifyContent="center"
-                  alignItems="center"
-                  right="450px"
                   position="absolute"
-                  display="flex"
-                  flexDirection="column"
+                  top="505px"
+                  h="173px"
+                  bg="black"
+                  w="1px"
+                  right="600px"
+                ></Box>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="42"
+                  height="42"
+                  viewBox="0 0 14 14"
                 >
-                  90000 сом
-                  <Image src={require('../imgs/плюс.png')} />
-                </Box>
-                <Box textAlign="center" fontSize="30" mb="3">
-                  доходы
-                </Box>
-                <Box display="flex" justifyContent="space-between">
-                  <Box sx={categStyles}>
-                    <Image w="53px" src={require('../imgs/paycheck 1.png')} />
-                    <Box>Зарплата</Box>
-                  </Box>
-                  <Box
-                    display="flex"
-                    flexDirection="column"
-                    alignItems="center"
+                  <g
+                    fill="none"
+                    stroke="#008b72"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
                   >
-                    <Image w="53px" src={require('../imgs/investment 1.png')} />
-                    <Box>Инвестиции</Box>
-                  </Box>
-                  <Box
-                    display="flex"
-                    flexDirection="column"
-                    justifyContent="space-between"
-                    alignItems="center"
-                  >
-                    <Image mt="3" w="30px" src={require('../imgs/плюс.png')} />
-                    <Box>Категория</Box>
-                  </Box>
-                </Box>
-              </CardBody>
-            </Card>
-            <Card border="1px">
-              <CardBody>
-                <Box
-                  w="100px"
-                  h="100px"
-                  bgColor="yellow.300"
-                  boxShadow=" 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                  borderRadius="50%"
-                  top="74px"
-                  justifyContent="center"
-                  alignItems="center"
-                  right="450px"
-                  position="absolute"
-                  display="flex"
-                  flexDirection="column"
-                >
-                  85 000 сом
-                  <Image src={require('../imgs/Line 2.png')} />
-                </Box>
-                <Box textAlign="center" fontSize="30" mb="3">
-                  расходы
-                </Box>
-                <Box display="flex" justifyContent="space-between">
-                  <Box sx={categStyles}>
-                    <Image
-                      w="53px"
-                      src={require('../imgs/house-black-silhouette-without-door 1.png')}
-                    />
-                    <Box>Дом</Box>
-                  </Box>
-                  <Box sx={categStyles}>
-                    <Image w="53px" src={require('../imgs/grocery 1.png')} />
-                    <Box>Продукты питания</Box>
-                  </Box>
-                  <Box
-                    display="flex"
-                    flexDirection="column"
-                    justifyContent="space-between"
-                    alignItems="center"
-                  >
-                    <Image
-                      w="53px"
-                      mt="3"
-                      src={require('../imgs/hanger1.png')}
-                    />
-                    <Box>Одежда</Box>
-                  </Box>
-                </Box>
-                <Box display="flex" justifyContent="space-between">
-                  <Box sx={categStyles}>
-                    <Image
-                      w="53px"
-                      src={require('../imgs/healthy-lifestyle-logo 1.png')}
-                    />
-                    <Box>Здоровье</Box>
-                  </Box>
-                  <Box sx={categStyles}>
-                    <Image
-                      w="53px"
-                      src={require('../imgs/public-transport 1.png')}
-                    />
-                    <Box>Транспорт</Box>
-                  </Box>
-                  <Box
-                    display="flex"
-                    flexDirection="column"
-                    justifyContent="space-between"
-                    alignItems="center"
-                  >
-                    <Image mt="3" w="30px" src={require('../imgs/плюс.png')} />
-                    <Box>Категория</Box>
-                  </Box>
-                </Box>
-              </CardBody>
-            </Card>
+                    <ellipse cx="9" cy="5.5" rx="4.5" ry="2" />
+                    <path d="M4.5 5.5v6c0 1.1 2 2 4.5 2s4.5-.9 4.5-2v-6" />
+                    <path d="M13.5 8.5c0 1.1-2 2-4.5 2s-4.5-.9-4.5-2m4.4-7A6.77 6.77 0 0 0 5 .5C2.51.5.5 1.4.5 2.5c0 .59.58 1.12 1.5 1.5" />
+                    <path d="M2 10C1.08 9.62.5 9.09.5 8.5v-6" />
+                    <path d="M2 7C1.08 6.62.5 6.09.5 5.5" />
+                  </g>
+                </svg>
+              </Box>
+              <Box fontSize="22px">Доходы</Box>
+              <Box>Отслеживайте свои доходы</Box>
+            </Box>
+            <Box mt="50px" w="200px">
+              <Box
+                position="absolute"
+                top="483px"
+                h="210px"
+                bg="black"
+                w="1px"
+                right="395px"
+              ></Box>
+              <Image src={require('../imgs/Frame 8.png')} />
+              <Box fontSize="22px">Расходы</Box>
+              <Box>Держите свой денежный поток кристально чистым</Box>
+            </Box>
           </Box>
         </Flex>
       </Box>
