@@ -10,6 +10,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import React from 'react';
+import FinTarget from './FinTarget';
 
 const Home = () => {
   const categStyles = {
@@ -320,6 +321,7 @@ const Home = () => {
           </Box>
         </Flex>
       </Box>
+      <FinTarget />
     </Box>
   );
 };

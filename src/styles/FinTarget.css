@@ -1,0 +1,160 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,regular,500,600,700,800,300italic,italic,500italic,600italic,700italic,800italic);
+
+.fin-target {
+  background: url("../imgs/Rectangle\ 85.png") center/cover no-repeat;
+  font-family: "Open Sans";
+  color: #FFFFFF;
+}
+
+.fin-target .container {
+  width: 95%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 25px 0 85px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fin-target_title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 75px;
+}
+
+.fin-target_subtitle {
+  font-size: 20px;
+  font-weight: 600;
+  width: 450px;
+  text-align: center;
+}
+
+.fin-target_info-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fin-target_left {
+  width: 40%;
+}
+
+.fin-target_right {
+  width: 50%;
+}
+
+.fin-target_left_img {
+  width: 385px;
+  object-fit: contain;
+}
+
+.fin-target_left_text {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 70px 0 25px;
+}
+
+.fin-target_left_btn {
+  color: #000;
+  background-color: #EBBB55;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 6px 43px;
+  border-radius: 20px;
+  transition: 200ms;
+}
+
+.fin-target_left_btn:hover {
+  background-color: #daaf52;
+}
+
+.fin-target_right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fin-target_right_date {
+  font-size: 24px;
+  font-weight: 700;
+  border-bottom: 1px solid #D9D9D96B;
+  padding: 0 15px;
+  margin-bottom: 20px;
+}
+
+.fin-target_right_date,
+.fin-target_right_list .fin-target_right_item {
+  border-bottom: 1px solid #D9D9D96B;
+}
+
+.fin-target_right_item-circle {
+  /* background-color: #CECACA; */
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  inset: 0;
+  border: 6px solid #CECACA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 200ms
+}
+
+.fin-target_right_item:hover .fin-target_right_item-circle {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.circle-key {
+  border-top: 6px solid #66A770;
+}
+
+.circle-card {
+  border-left: 6px solid #EBBB55;
+  border-bottom: 6px solid #EBBB55;
+}
+
+.circle-product {
+  border-top: 6px solid #075251;
+  border-left: 6px solid #075251;
+}
+
+.circle-wallet {
+  border-bottom: 6px solid #B62020;
+  border-right: 6px solid #B62020;
+}
+
+.fin-target_right_list {
+  display: flex;
+  flex-direction: column;
+}
+
+.fin-target_right_item {
+  display: grid;
+  grid-template-columns: 75px repeat(2, auto);
+  align-items: center;
+  padding: 10px 0;
+}
+
+.fin-target_right_item-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fin-target_right_item-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.fin-target_right_item-price {
+  justify-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: 15px;
+}
+
+.fin-target_right_item-price-main {
+  font-size: 24px;
+  font-weight: 700;
+}
