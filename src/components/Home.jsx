@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import FinTarget from './FinTarget';
+import StatsHome from './StatsHome';
 
 const Home = () => {
   const categStyles = {
@@ -304,6 +305,7 @@ const Home = () => {
         </Flex>
       </Box>
       <FinTarget />
+      <StatsHome />
     </Box>
   );
 };
