@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import FinTarget from './FinTarget';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const categStyles = {
@@ -49,9 +50,11 @@ const Home = () => {
             colSpan="1"
             h="10"
           >
-            <Box fontSize="20px" fontWeight="700">
-              Бюджет
-            </Box>
+            <Link to="/budget">
+              <Box fontSize="20px" fontWeight="700">
+                Бюджет
+              </Box>
+            </Link>
           </GridItem>
           <GridItem
             display="flex"

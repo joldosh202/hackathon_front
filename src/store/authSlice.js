@@ -1,24 +1,26 @@
 import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { useEffect } from 'react';
 export const register = createAsyncThunk(
   'auth/register',
   async function (
-    { first_name, last_name, email, password, password2 },
+    { first_name, last_name, email, password,  },
     { rejectWithValue, dispatch }
   ) {
     try {
       const register = {
-        first_name: first_name,
-        last_name: last_name,
+        firstname: first_name,
+        lastname: last_name,
         email: email,
         password: password,
-        password2: password2,
       };
-
+      const regjson = JSON.stringify(register)
+      console.log(regjson);
       const response = await axios.post(
-        'http://34.172.10.128/api/v1/account/register/',
-        register
-      );
+        'http://35.237.122.86:8080/api/v1/auth/register',
+        regjson
+        );
+        // console.log(response.data);
       console.log(response);
 
       if (!response.ok) {
@@ -42,7 +44,7 @@ export const login = createAsyncThunk(
       };
 
       const response = await axios.post(
-        'http://34.172.10.128/api/v1/account/login/',
+        'http://35.237.122.86:8080/api/v1/account/login/',
         login
       );
       console.log(response);
@@ -64,6 +66,7 @@ export const login = createAsyncThunk(
     }
   }
 );
+
 const setError = (state, action) => {
   state.status = 'rejected';
   state.error = action.payload;
@@ -89,8 +92,6 @@ const authSlice = createSlice({
     //  },
   },
   extraReducers: builder => {
-    // builder.addCase(register, (state, action) => {});
-    // builder.addCase(login, (state, action) => {});
     builder.addCase(register.pending);
     builder.addCase(register.rejected);
     builder.addCase(register.fulfilled, (state, action) => {});

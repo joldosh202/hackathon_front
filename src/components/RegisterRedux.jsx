@@ -1,4 +1,4 @@
-import { Input } from '@chakra-ui/react';
+import { Button, Input } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { useRegisterMutation } from '../store/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,7 +17,6 @@ const RegisterRedux = () => {
         last_name,
         email,
         password,
-        password2,
       })
     );
   };
@@ -49,13 +48,7 @@ const RegisterRedux = () => {
         value={password}
         onChange={e => setPassword(e.target.value)}
       />
-      <Input
-        type="password"
-        placeholder="password2"
-        value={password2}
-        onChange={e => setPassword2(e.target.value)}
-      />
-      <button onClick={registerBtn}>register</button>
+      <Button onClick={registerBtn}>register</Button>
       {/* </form> */}
     </div>
   );
