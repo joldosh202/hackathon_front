@@ -4,23 +4,40 @@ import { useEffect } from 'react';
 export const register = createAsyncThunk(
   'auth/register',
   async function (
-    { first_name, last_name, email, password,  },
+    { first_name, last_name, email, password, },
     { rejectWithValue, dispatch }
   ) {
     try {
-      const register = {
-        firstname: first_name,
-        lastname: last_name,
-        email: email,
-        password: password,
-      };
-      const regjson = JSON.stringify(register)
-      console.log(regjson);
+      // const register = {
+      //   firstname: first_name,
+      //   lastname: last_name,
+      //   email: email,
+      //   password: password,
+      // };
+
+      // const regjson = JSON.stringify(register)
+      // console.log(regjson);
+
+      const register = new FormData;
+
+      register.append("firstname", first_name);
+      register.append("lastname", last_name);
+      register.append("email", email);
+      register.append("password", password);
+
+
+
+
       const response = await axios.post(
         'http://35.237.122.86:8080/api/v1/auth/register',
-        regjson
-        );
-        // console.log(response.data);
+        register,
+        // {
+        //   headers: {
+        //     'content-type': 'multipart/form-data'
+        //   }
+        // }
+      );
+      // console.log(response.data);
       console.log(response);
 
       if (!response.ok) {
@@ -30,6 +47,7 @@ export const register = createAsyncThunk(
       const data = await response.json();
       dispatch(register(data));
     } catch (error) {
+      console.log(error)
       return rejectWithValue(error.message);
     }
   }
@@ -82,7 +100,7 @@ const authSlice = createSlice({
     //  error: null,
   },
   reducers: {
-    registerUser(state, action) {},
+    registerUser(state, action) { },
     loginUser(state, action) {
       state.user = action.payload.email;
       console.log(state.user);
@@ -94,7 +112,7 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(register.pending);
     builder.addCase(register.rejected);
-    builder.addCase(register.fulfilled, (state, action) => {});
+    builder.addCase(register.fulfilled, (state, action) => { });
 
     builder.addCase(login.pending);
     builder.addCase(login.rejected);
