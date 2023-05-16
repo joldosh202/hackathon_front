@@ -61,11 +61,13 @@ export const login = createAsyncThunk(
           }
       );
 
-      console.log(response.data);
       console.log(response);
       const data2 = JSON.parse(response.config.data);
-      const token = response.data;
+      const token = response.data.token;
       const emailValue = data2.email;
+
+      localStorage.setItem("token", JSON.stringify(token));
+      localStorage.setItem("username", emailValue);
 
       // if (!response.ok) {
       //   throw new Error("Can't add task. Server error.");
