@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 export const register = createAsyncThunk(
   'auth/register',
   async function (
-    { first_name, last_name, email, password,  },
+    { first_name, last_name, email, password, },
     { rejectWithValue, dispatch }
   ) {
     try {
@@ -14,11 +14,17 @@ export const register = createAsyncThunk(
       register.append("lastname", last_name);
       register.append("email", email);
       register.append("password", password);
+
       const response = await axios.post(
         'http://35.237.122.86:8080/api/v1/auth/register',
-        register
-        );
-        // console.log(response.data);
+        register,
+        // {
+        //   headers: {
+        //     'content-type': 'multipart/form-data'
+        //   }
+        // }
+      );
+      // console.log(response.data);
       console.log(response);
 
       if (!response.ok) {
@@ -40,12 +46,16 @@ export const login = createAsyncThunk(
       const loginData = new FormData();
       loginData.append("email", email);
       loginData.append("password", password);
+
+
       // const jsonlogin = JSON.stringify(loginData)
       console.log(loginData);
+
       const response = await axios.post(
         'http://35.237.122.86:8080/api/v1/auth/authenticate',
           loginData,
       );
+      
       console.log(response);
       const data2 = JSON.parse(response.config.data);
       const token = response.data;
@@ -107,7 +117,7 @@ const authSlice = createSlice({
     user: null,
   },
   reducers: {
-    registerUser(state, action) {},
+    registerUser(state, action) { },
     loginUser(state, action) {
       state.user = action.payload.email;
       console.log(state.user);
@@ -120,7 +130,7 @@ const authSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(register.pending);
     builder.addCase(register.rejected);
-    builder.addCase(register.fulfilled, (state, action) => {});
+    builder.addCase(register.fulfilled, (state, action) => { });
 
     builder.addCase(login.pending);
     builder.addCase(login.rejected, (state,action) => {
