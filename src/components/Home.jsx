@@ -12,6 +12,7 @@ import {
 import React from 'react';
 import FinTarget from './FinTarget';
 import { Link } from 'react-router-dom';
+import StatsHome from './StatsHome';
 
 const Home = () => {
   const categStyles = {
@@ -307,6 +308,7 @@ const Home = () => {
         </Flex>
       </Box>
       <FinTarget />
+      <StatsHome />
     </Box>
   );
 };

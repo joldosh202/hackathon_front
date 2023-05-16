@@ -1,8 +1,8 @@
 import { Input } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import { login } from '../store/authSlice';
+import { login } from '../../store/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../store/authSlice';
+import { register } from '../../store/authSlice';
 const LoginRedux = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

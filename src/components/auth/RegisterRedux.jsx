@@ -1,8 +1,8 @@
 import { Button, Input } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import { useRegisterMutation } from '../store/authSlice';
+import { useRegisterMutation } from '../../store/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../store/authSlice';
+import { register } from '../../store/authSlice';
 const RegisterRedux = () => {
   const [first_name, setFirstName] = useState('');
   const [last_name, setLastName] = useState('');
