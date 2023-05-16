@@ -18,11 +18,11 @@ export const register = createAsyncThunk(
       const response = await axios.post(
         'http://35.237.122.86:8080/api/v1/auth/register',
         register,
-        // {
-        //   headers: {
-        //     'content-type': 'multipart/form-data'
-        //   }
-        // }
+        {
+          headers: {
+            'content-type': 'multipart/form-data'
+          }
+        }
       );
       // console.log(response.data);
       console.log(response);
@@ -46,24 +46,30 @@ export const login = createAsyncThunk(
       const loginData = new FormData();
       loginData.append("email", email);
       loginData.append("password", password);
+      console.log(email);
+      const jsonlogin = JSON.stringify(loginData)
 
-
-      // const jsonlogin = JSON.stringify(loginData)
       console.log(loginData);
 
       const response = await axios.post(
         'http://35.237.122.86:8080/api/v1/auth/authenticate',
           loginData,
+          {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
       );
-      
+
+      console.log(response.data);
       console.log(response);
       const data2 = JSON.parse(response.config.data);
       const token = response.data;
       const emailValue = data2.email;
 
-      if (!response.ok) {
-        throw new Error("Can't add task. Server error.");
-      }
+      // if (!response.ok) {
+      //   throw new Error("Can't add task. Server error.");
+      // }
 
       const data = await response.json();
       dispatch(login(data));
