@@ -101,6 +101,7 @@ const Home = () => {
             justifyContent="center"
             h="10"
           >
+            <Link to='/register'>
             <Button
               colorScheme="yellow"
               w="163px"
@@ -108,9 +109,11 @@ const Home = () => {
               borderRadius="20px"
               fontSize="20px"
               fontWeight="500"
+              
             >
               Регистрация
             </Button>
+              </Link>
           </GridItem>
           <GridItem
             as="aside"
@@ -120,6 +123,7 @@ const Home = () => {
             alignItems="center"
             justifyContent="center"
           >
+            <Link to='/login'>
             <Button
               colorScheme="yellow"
               w="111px"
@@ -130,6 +134,7 @@ const Home = () => {
             >
               Вход
             </Button>
+              </Link>
           </GridItem>
         </Grid>
         <Box>
