@@ -7,7 +7,6 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import { BrowserRouter } from 'react-router-dom';
-import { PersistGate } from 'redux-persist/es/integration/react';
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
