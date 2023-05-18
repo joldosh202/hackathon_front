@@ -1,5 +1,8 @@
 import { Box, Button } from '@chakra-ui/react';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { updateBal } from '../../store/CardAccSlice';
+import { Link } from 'react-router-dom';
 
 const CardAcc = ({
   id,
@@ -14,18 +17,27 @@ const CardAcc = ({
   cardType,
   cvv,
 }) => {
+
+  const dispatch = useDispatch()
+  
   return (
-    <Box key={id}>
-      <Box>{name}</Box>
-      <Box>{balance}</Box>
-      <Box>{currency}</Box>
-      <Box>{color}</Box>
-      <Box>{icon}</Box>
-      <Box>{cardHolderName}</Box>
+    <Box p='20px' >
+      <Box>Имя карты: {name}</Box>
+      <Box>баланс: {balance}</Box>
+      <Box>Валюта: {currency}</Box>
+      {/* <Box>Цвет: {color}</Box>
+      <Box>Иконка: {icon}</Box> */}
+      {/* <Box>{cardHolderName}</Box>
       <Box>{bankName}</Box>
-      <Box>{cardNumber}</Box>
-      <Box>{cardType}</Box>
-      <Box>{cvv}</Box>
+      <Box>{cardNumber}</Box> */}
+      <Box>Тип Карты: {cardType}</Box>
+      {/* <Box>{cvv}</Box> */}
+      {/* <Link to={`/updatebalance/${id}`}>
+        <Button >update balance</Button>
+      </Link> */}
+      <Link to={`/onecard/${id}`}>
+      <Button>see</Button>
+      </Link>
     </Box>
   );
 };

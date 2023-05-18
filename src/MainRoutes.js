@@ -7,6 +7,9 @@ import Registration from './components/auth/Registration';
 import Budget from './components/Budget';
 import AddCardAcc from './components/CardAccount/AddCardAcc';
 import UpdateBalance from './components/CardAccount/UpdateBalance';
+import CardAccList from './components/CardAccount/CardAccList';
+import VerifyEmail from './components/auth/VerifyEmail';
+import OneCard from './components/CardAccount/OneCard';
 
 const MainRoutes = () => {
   return (
@@ -17,7 +20,10 @@ const MainRoutes = () => {
       <Route path="/registration" element={<Registration />} />
       <Route path="/budget" element={<Budget />} />
       <Route path="/addcard" element={<AddCardAcc />} />
-      <Route path="/updatebalance" element={<UpdateBalance />} />
+      <Route path="/updatebalance/:id" element={<UpdateBalance />} />
+      <Route path="/onecard/:id" element={<OneCard />} />
+      <Route path="/cardlist" element={<CardAccList />} />
+      <Route path="/verify" element={<VerifyEmail />} />
     </Routes>
   );
 };

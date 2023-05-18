@@ -1,6 +1,7 @@
 import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 export const register = createAsyncThunk(
   'auth/register',
   async function (
@@ -27,9 +28,10 @@ export const register = createAsyncThunk(
       // console.log(response.data);
       console.log(response);
 
-      if (!response.ok) {
-        throw new Error("Can't add task. Server error.");
-      }
+      // if (!response.ok) {
+      //   throw new Error("Can't add task. Server error.");
+      // }
+      useNavigate('/verify')
 
       const data = await response.json();
       dispatch(register(data));
@@ -82,35 +84,30 @@ export const login = createAsyncThunk(
   }
 );
 
-// export const verifyEmail = createAsyncThunk(
-//   'auth/verify',
-//   async function ( token, { rejectWithValue, dispatch }) {
-//     try {
-//       // const token = new FormData;
+export const verifyEmail = createAsyncThunk(
+  'auth/verify',
+  async function ( url, { rejectWithValue, dispatch }) {
+    try {
+      // const token = new FormData;
 
-//       // token.append("token", token);
-//       const token1 = token
+      // token.append("token", token);
+      // const token1 = token
       
 // const tokenjson = JSON.stringify(token)
 // const bearer = `Bearer ${token1}`
-//       const response = await axios.get(
-//         'http://35.237.122.86:8080/api/v1/auth/verify-email',
-//         tokenjson
-//       );
-//       console.log(response);
-//       // localStorage.setItem('token', JSON.stringify(token));
+      const response = await axios.get(
+        `${url}`,
+        
+      );
+      console.log(response);
 
-//       if (!response.ok) {
-//         throw new Error("Can't add task. Server error.");
-//       }
-
-//       const data = await response.json();
-//       dispatch(verifyEmail(data));
-//     } catch (error) {
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
+      const data = await response.json();
+      dispatch(verifyEmail(data));
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 const setError = (state, action) => {
   state.status = 'rejected';
@@ -146,6 +143,9 @@ const authSlice = createSlice({
     })
     builder.addCase(login.fulfilled, (state, action) => {
     });
+    builder.addCase(verifyEmail.pending);
+    builder.addCase(verifyEmail.rejected);
+    builder.addCase(verifyEmail.fulfilled, (state, action) => {});
   },
 });
 

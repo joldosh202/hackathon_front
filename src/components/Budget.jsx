@@ -108,7 +108,7 @@ const Budget = () => {
             <Box pl="240px" fontSize="30px" mb="30px" fontWeight="700">
               Доходы
             </Box>
-            <Flex maxWidth="800px" justify="space-between" wrap="wrap">
+            <Flex maxWidth="1200px" justify="space-between" wrap="wrap">
               <Box>
                 <Box sx={budgetIcon}>
                   <Image src={require('../BudgetIcons/salary (1) 1.png')} />
@@ -144,12 +144,17 @@ const Budget = () => {
               >
                 <Image src={require('../BudgetIcons/плюс (2).png')} />
               </Box>
-            </Flex>
-            <Box position="absolute" w="350px" right="10%" top="20%">
-              <Image
-                src={require('../BudgetIcons/image 46-PhotoRoom 1 (1).png')}
-              />
+            <Box ml='100px'>
+              <Box>
+                <Box fontSize='30px'>Общий доход</Box>
+                <Box textAlign='center'>80 000 сом</Box>
+              </Box>
+              <Box>
+                <Box fontSize='30px'>Общий расход</Box>
+                <Box textAlign='center'>73 000 сом</Box>
+              </Box>
             </Box>
+            </Flex>
           </Box>
           <Box mt="20px">
             <Box pl="240px" fontSize="30px" mb="30px" fontWeight="700">
