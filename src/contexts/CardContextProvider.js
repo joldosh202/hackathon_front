@@ -30,7 +30,7 @@ const CardContextProvider = ({ children }) => {
     try {
       const { data } = await axios(`${API}/api/vi/cash-account`, {
         headers: {
-          "Authorization": `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpeWc1Nzc4MEBuZXppZC5jb20iLCJpYXQiOjE2ODQ0MjQ4NDQsImV4cCI6MTY4NDQyNjY0NH0.8WYKNWHHzRV1TKiB-jn1XqJDjzjcVWV6xRT4B4r4Tns`
+          "Authorization": `Bearer `
         }
       });
       console.log(data);
@@ -49,7 +49,7 @@ const CardContextProvider = ({ children }) => {
     try {
       const { data } = await axios.post(`${API}/api/vi/cash-account`, JSON.stringify(cardInfo), {
         headers: {
-          "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJpeWc1Nzc4MEBuZXppZC5jb20iLCJpYXQiOjE2ODQ0MjQ4NDQsImV4cCI6MTY4NDQyNjY0NH0.8WYKNWHHzRV1TKiB-jn1XqJDjzjcVWV6xRT4B4r4Tns",
+          "Authorization": "Bearer ",
           "Content-Type": "application/json"
         }
       })
