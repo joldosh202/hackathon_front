@@ -8,6 +8,7 @@ import Budget from './components/Budget';
 import AddCardAcc from './components/CardAccount/AddCardAcc';
 import UpdateBalance from './components/CardAccount/UpdateBalance';
 import CreateCardPage from './components/CreateCardPage';
+import ProfilePage from './components/ProfilePage';
 
 const MainRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const MainRoutes = () => {
       <Route path="/addcard" element={<AddCardAcc />} />
       <Route path="/updatebalance" element={<UpdateBalance />} />
       <Route path="/card-create" element={<CreateCardPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
     </Routes>
   );
 };
