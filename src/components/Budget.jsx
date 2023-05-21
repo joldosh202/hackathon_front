@@ -161,14 +161,17 @@ const Budget = () => {
               Доходы
             </Box>
             <Flex maxWidth="1200px" justify="space-between" wrap="wrap">
-              <Box>
+              <Box display='flex'  flexDirection='column' alignItems='center'>
                 <Box sx={budgetIcon}>
                   <Image src={require('../BudgetIcons/salary (1) 1.png')} />
                 </Box>
+                <Box>
+
                 <Box fontWeight="700">Зарплата</Box>
                 <Box>50 000 сом</Box>
+                </Box>
               </Box>
-              <Box>
+              <Box display='flex'  flexDirection='column' alignItems='center'>
                 <Box sx={budgetIcon} borderRadius="75px">
                   <Image src={require('../BudgetIcons/investment (1) 1.png')} />
                 </Box>
@@ -176,7 +179,7 @@ const Budget = () => {
 
                 <Box>15 000 сом</Box>
               </Box>
-              <Box>
+              <Box display='flex'  flexDirection='column' alignItems='center'>
                 <Box sx={budgetIcon} borderRadius="75px">
                   <Image src={require('../BudgetIcons/piggy-bank 1.png')} />
                 </Box>
@@ -210,11 +213,11 @@ const Budget = () => {
           </Box>
           <Box mt="20px">
             <Box pl="240px" fontSize="30px" mb="30px" fontWeight="700">
-              расход
+              Расход
             </Box>
             <Wrap>
               <Flex w="1200px" justify="space-between" wrap="wrap">
-                <Box>
+                <Box display='flex'  flexDirection='column' alignItems='center'>
                   <Box sx={budgetIcon}>
                     <Image src={require('../BudgetIcons/home 1.png')} />
                   </Box>
@@ -222,7 +225,7 @@ const Budget = () => {
 
                   <Box>8 000 сом</Box>
                 </Box>
-                <Box>
+                <Box display='flex'  flexDirection='column' alignItems='center'>
                   <Box sx={budgetIcon}>
                     <Image
                       src={require('../BudgetIcons//healthy-food (1) 1.png')}
@@ -232,7 +235,7 @@ const Budget = () => {
 
                   <Box>5000 сом</Box>
                 </Box>
-                <Box>
+                <Box display='flex'  flexDirection='column' alignItems='center'>
                   <Box sx={budgetIcon}>
                     <Image src={require('../BudgetIcons/textile 1.png')} />
                   </Box>
@@ -240,7 +243,7 @@ const Budget = () => {
 
                   <Box>5000 сом</Box>
                 </Box>
-                <Box>
+                <Box display='flex'  flexDirection='column' alignItems='center'>
                   <Box sx={budgetIcon}>
                     <Image src={require('../BudgetIcons/transport 1.png')} />
                   </Box>
@@ -248,7 +251,7 @@ const Budget = () => {
 
                   <Box>3000 сом</Box>
                 </Box>
-                <Box>
+                <Box display='flex'  flexDirection='column' alignItems='center'>
                   <Box sx={budgetIcon}>
                     <Image src={require('../BudgetIcons/health 1.png')} />
                   </Box>

@@ -149,9 +149,11 @@ const Navbar = () => {
           justifyContent="center"
           h="10"
         >
+         <Link to='profile'>
           <Box fontSize="20px" fontWeight="700" color="white">
             {localStorage.getItem('username')}
           </Box>
+         </Link>
         </GridItem>
         <GridItem
           display="flex"

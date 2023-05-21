@@ -1,0 +1,117 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,regular,500,600,700,800,300italic,italic,500italic,600italic,700italic,800italic);
+
+.profile {
+  font-family: "Open Sans";
+}
+
+.profile header {
+  background-color: #5FA499;
+}
+
+.profile .container {
+  width: 95%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.profile header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #FFF;
+}
+
+.logo {
+  padding: 8px 0;
+}
+
+.profile nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav_item {
+  font-size: 17px;
+  font-weight: 700;
+  font-family: "Open Sans";
+  margin: 0 12px;
+}
+
+.profile-icons {
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.mail {
+  display: flex;
+  align-items: center;
+}
+
+.mail-mail {
+  font-family: "Open Sans";
+  margin: 0 12px;
+}
+
+.log-out {
+  font-family: "Open Sans";
+  color: #000;
+  background-color: #EBBB55;
+  border-radius: 20px;
+  padding: 7px 17px;
+}
+
+.main-profile .container .main-profile__title {
+  display: flex;
+  justify-content: space-between;
+  color: #000;
+  padding-top: 80px;
+  padding-bottom: 60px;
+}
+
+.main-profile___title_item {
+  font-family: "Open Sans";
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.main-profile___title_item:nth-child(2) {
+  font-size: 32px;
+}
+
+.main-profile___title_item:nth-child(3) {
+  color: #EB001B;
+}
+
+.main-profile___title_item:nth-child(1),
+.main-profile___title_item:nth-child(3) {
+  display: flex;
+  align-items: center;
+}
+
+.main-profile___title_item svg {
+  margin: 0 15px;
+}
+
+.main-profile__form_item {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px auto;
+}
+
+.main-profile__form_item input {
+  background-color: #5FA499;
+  border-radius: 20px;
+  padding: 12px 20px;
+  color: #FFFFFF;
+  outline: 0;
+  width: 370px;
+  margin-left: 10px;
+}
+
+.main-profile__form_item input::placeholder {
+  color: #cfcfcf;
+}

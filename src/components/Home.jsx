@@ -267,6 +267,10 @@ const Home = () => {
             top="100px"
             src={require('../imgs/Ellipse 45.png')}
           />
+          <Image position="absolute"
+            right="816px"
+            top="396px"
+            src={require('../imgs/Group 37.png')}/>
           <Image
             position="absolute"
             top="150px"
@@ -349,7 +353,7 @@ const Home = () => {
                 {isSmallerThan800 ? null :
                 <Box
                 position="absolute"
-                  top="505px"
+                  top="497px"
                   h="173px"
                   bg="black"
                   w="2px"

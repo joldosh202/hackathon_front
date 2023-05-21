@@ -27,6 +27,7 @@ import OneCredit from './components/Credit/OneCredit';
 import CreditRepay from './components/Credit/CreditRepay';
 import SubtractCash from './components/CashAccount/SubtractCash';
 import AddCashBal from './components/CashAccount/AddCashBal';
+import ProfilePage from './components/ProfilePage';
 
 const MainRoutes = () => {
   return (
@@ -64,6 +65,7 @@ const MainRoutes = () => {
 
 
 
+      <Route path="/profile" element={<ProfilePage />} />
     </Routes>
   );
 };
