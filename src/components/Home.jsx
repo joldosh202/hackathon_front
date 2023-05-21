@@ -6,20 +6,29 @@ import {
   Flex,
   Grid,
   GridItem,
+  IconButton,
   Image,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Text,
+  useMediaQuery,
 } from '@chakra-ui/react';
 import React from 'react';
 import FinTarget from './FinTarget';
 import { Link } from 'react-router-dom';
 import StatsHome from './StatsHome';
-
+import { HamburgerIcon } from '@chakra-ui/icons';
 const Home = () => {
   const categStyles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   };
+
+  const [isSmallerThan800] = useMediaQuery('(max-width: 1400px)')
+  
   return (
     <Box>
       <Box
@@ -27,6 +36,60 @@ const Home = () => {
         w="100%"
         h="650"
       >
+       {isSmallerThan800 ? <Menu >
+        <Box display='flex'>
+
+        <Box
+            ml="20"
+            as="main"
+            colSpan="1"
+            h="10"
+            display="flex"
+            height="50px"
+            width="108px"
+            alignItems="center"
+            justifyContent="center"
+            pb="17px"
+            >
+            <Image src={require('../imgs/лого (1).png')} />
+          </Box>
+  <MenuButton
+    as={IconButton}
+    aria-label='Options'
+    icon={<HamburgerIcon />}
+    variant='outline'
+  />
+  <MenuList>
+    <MenuItem >
+    <Link to="/budget">
+      
+    Бюджет
+    </Link>
+    </MenuItem>
+    <MenuItem  >
+    Финансовые цели
+    </MenuItem>
+    <MenuItem  >
+    Статистика
+    </MenuItem>
+    <MenuItem >
+    Транзакции
+    </MenuItem>
+    <Link to='/register'>
+    <MenuItem>
+            
+              Регистрация
+    </MenuItem>
+              </Link>
+    <Link to='/login'>
+    <MenuItem>
+         Вход           
+    </MenuItem>
+       </Link>
+  </MenuList>
+</Box>
+</Menu>
+:
         <Grid templateColumns="repeat(7, 1fr)" gap={0} pr="20" pl="20" pt="5">
           <GridItem
             ml="20"
@@ -88,8 +151,8 @@ const Home = () => {
             colSpan="1"
             justifyContent="center"
             h="10"
-          >
-            <Box fontSize="20px" fontWeight="700">
+            >
+            <Box className='testing' fontSize="20px" fontWeight="700">
               Транзакции
             </Box>
           </GridItem>
@@ -122,7 +185,7 @@ const Home = () => {
             display="flex"
             alignItems="center"
             justifyContent="center"
-          >
+            >
             <Link to='/login'>
               <Button
                 colorScheme="yellow"
@@ -137,10 +200,13 @@ const Home = () => {
             </Link>
           </GridItem>
         </Grid>
-        <Box>
+        }
+        <Box> 
           <Image
             // position="absolute"
             w="100%"
+            
+            h={isSmallerThan800 ? '500px' : null}
             src={require('../imgs/Rectangle 80.png')}
           />
         </Box>
@@ -151,19 +217,20 @@ const Home = () => {
               flexDirection="column"
               justifyContent="space-between"
               h="300px"
-              ml="130px"
+              ml={isSmallerThan800 ? '50px' : '130px'}
               mt="20"
+              w={isSmallerThan800 ? '400px' : "500px"}
             >
               <Box>
-                <Box w="500px" fontSize={43} color="white">
+                <Box  fontSize={43} color="white">
                   Управление личными финансами
                 </Box>
-                <Box w="400px" fontSize={25} color="white">
-                  Стройте свои бюджеты легко и просто__ в несколько шагов
+                <Box fontSize={25} color="white">
+                  Стройте свои бюджеты легко и просто в несколько шагов
                 </Box>
               </Box>
               <Box mt="">
-                <Link to='/card-create'>
+                <Link to='/cashlist'>
                   <Button
                     colorScheme="yellow"
                     w="223px"
@@ -181,6 +248,12 @@ const Home = () => {
         </Box>
         {/* ///////////////////// */}
         <Box>
+          {
+            isSmallerThan800 ? 
+            null
+            :
+            <Box>
+
           <Image
             position="absolute"
             left="700px"
@@ -189,11 +262,15 @@ const Home = () => {
             zIndex="10"
           />
           <Image
-            position="absolute"
+          position="absolute"
             right="150px"
             top="100px"
             src={require('../imgs/Ellipse 45.png')}
           />
+          <Image position="absolute"
+            right="816px"
+            top="396px"
+            src={require('../imgs/Group 37.png')}/>
           <Image
             position="absolute"
             top="150px"
@@ -211,20 +288,22 @@ const Home = () => {
             left="780px"
             top="270px"
             src={require('../imgs/Group 42.png')}
-          />
+            />
           <Image
             position="absolute"
             left="970px"
             top="240px"
             src={require('../imgs/Group 87.png')}
-          />
+            />
+            </Box>
+        }
         </Box>
         {/* ///////////////////////// */}
       </Box>
 
       {/* ////////budget////////// */}
       <Box pl="100px" pr="100px" pb="50px">
-        <Flex justify="space-between">
+        <Flex justify="space-between" wrap='wrap'>
           <Box
             // display="flex"
             // flexDirection="column"
@@ -248,16 +327,19 @@ const Home = () => {
               Подробнее
             </Button>
           </Box>
-          <Box display="flex" w="720px">
+          <Box display="flex" w="720px" flexWrap='wrap' justifyContent='center'>
             <Box w="200px">
+              {isSmallerThan800 ? null :
               <Box
-                position="absolute"
-                top="528px"
+              position="absolute"
+                top="520px"
                 h="123px"
                 bg="black"
-                w="1px"
-                right="795px"
+                w="2px"
+                right="735px"
               ></Box>
+              }
+            
               <Image src={require('../imgs/бюджет 1стр.png')} />
               <Box fontSize="22px">Кредиты</Box>
               <Box>Узнать, сколько вам одобрит банк</Box>
@@ -268,14 +350,16 @@ const Home = () => {
                 justifyContent="center"
                 flexDirection="column"
               >
+                {isSmallerThan800 ? null :
                 <Box
-                  position="absolute"
-                  top="505px"
+                position="absolute"
+                  top="497px"
                   h="173px"
                   bg="black"
-                  w="1px"
-                  right="600px"
+                  w="2px"
+                  right="540px"
                 ></Box>
+              }
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="42"
@@ -300,14 +384,17 @@ const Home = () => {
               <Box>Отслеживайте свои доходы</Box>
             </Box>
             <Box mt="50px" w="200px">
+            {isSmallerThan800 ? null :
+
               <Box
                 position="absolute"
                 top="483px"
                 h="210px"
                 bg="black"
-                w="1px"
-                right="395px"
+                w="2px"
+                right="335px"
               ></Box>
+            }
               <Image src={require('../imgs/Frame 8.png')} />
               <Box fontSize="22px">Расходы</Box>
               <Box>Держите свой денежный поток кристально чистым</Box>

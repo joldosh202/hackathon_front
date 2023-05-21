@@ -7,6 +7,7 @@ export const useCard = () => useContext(cardContext);
 
 const INIT_STATE = {
   cards: [],
+  oneCash: {}
 }
 
 function reducer(state = INIT_STATE, action) {
@@ -16,21 +17,26 @@ function reducer(state = INIT_STATE, action) {
         ...state,
         cards: action.payload,
       };
+      case "GET_ONE_CASH":
+      return { ...state, oneCash: action.payload };
+
     default:
       return state;
   }
 }
 
-const API = "http://35.237.122.86:8080";
+const API = "https://35.237.122.86:8443";
 
 const CardContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
   async function getCards() {
+    const token = JSON.parse(localStorage.getItem('token'))
+
     try {
-      const { data } = await axios(`${API}/api/vi/cash-account`, {
+      const { data } = await axios(`${API}/api/v1/cash-account`, {
         headers: {
-          "Authorization": `Bearer `
+          "Authorization": `Bearer ${token}`
         }
       });
       console.log(data);
@@ -47,9 +53,10 @@ const CardContextProvider = ({ children }) => {
 
   async function cardPost(cardInfo) {
     try {
-      const { data } = await axios.post(`${API}/api/vi/cash-account`, JSON.stringify(cardInfo), {
+      const token = JSON.parse(localStorage.getItem('token'))
+      const { data } = await axios.post(`${API}/api/v1/cash-account`, JSON.stringify(cardInfo), {
         headers: {
-          "Authorization": "Bearer ",
+          "Authorization": `Bearer ${token}`,
           "Content-Type": "application/json"
         }
       })
@@ -61,10 +68,31 @@ const CardContextProvider = ({ children }) => {
     }
   }
 
+  async function getOneCash(id) {
+    try {
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Bearer ${token}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+      };
+      const res = await axios(`${API}/api/v1/cash-account/${id}`, config);
+      dispatch({
+        type: "GET_ONE_CASH",
+        payload: res.data,
+      });
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+      // setError(e);
+    }
+  }
+
 
   async function transfer(fromId, toId, file) {
     try {
-      const { data } = await axios.patch(`${API}/api/vi/cash-account/${fromId}/transfer/${toId}`, file, {
+      const { data } = await axios.patch(`${API}/api/v1/cash-account/${fromId}/transfer/${toId}`, file, {
         headers: {
           "Authorization": "Bearer ",
           "Content-Type": "application/json"
@@ -74,12 +102,53 @@ const CardContextProvider = ({ children }) => {
       console.log(error)
     }
   }
+  async function subtract({amount, descrip,accId,accName,category}) {
+    try {
+      const subt = new FormData()
+      subt.append('amount', amount)
+      subt.append('description', descrip)
+      subt.append('accountId', accId)
+      subt.append('accountName', accName)
+      subt.append('categoryId', category)
+      // subt.append('accountType', accType)
+      
+      // subt.append('categoryId', accId)
+
+        console.log(subt);
+console.log(accId);
+
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Bearer ${token}`;
+      const config = {
+        headers: {
+          Authorization,
+          'Content-Type': 'application/json'
+        },
+      };
+      const res = await axios.patch(
+        `https://35.237.122.86:8443/api/v1/card-account/subtract/balance?categoryId=${accId}`,
+        subt,config
+      );
+      // dispatch({
+      //   type: "SUBTRACT_BAL",
+      //   payload: res.data,
+      // });
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+      // return rejectWithValue(error);
+    }
+  // }
+  }
 
   return (
     <cardContext.Provider value={{
       getCards,
       cardPost,
       transfer,
+      getOneCash,
+      subtract,
+      oneCash: state.oneCash,
 
       cards: state.cards
     }}>

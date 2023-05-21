@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { updateBal } from '../../store/CardAccSlice';
 import { Link } from 'react-router-dom';
 
-const CardAcc = ({
+const CashAcc = ({
   id,
   name,
   balance,
@@ -14,7 +14,7 @@ const CardAcc = ({
   cardHolderName,
   bankName,
   cardNumber,
-  paymentSystem,
+  accountType,
   cvv,
 }) => {
 
@@ -30,16 +30,16 @@ const CardAcc = ({
       {/* <Box>{cardHolderName}</Box>
       <Box>{bankName}</Box> */}
       {/* <Box>{cardNumber}</Box> */}
-      <Box>Тип Карты: {paymentSystem}</Box>
+      <Box>Тип Счета: {accountType}</Box>
       {/* <Box>{cvv}</Box> */}
       {/* <Link to={`/updatebalance/${id}`}>
         <Button >update balance</Button>
       </Link> */}
-      <Link to={`/onecard/${id}`}>
+      <Link to={`/onecash/${id}`}>
       <Button mt='10px'>Подробнее</Button>
       </Link>
     </Box>
   );
 };
 
-export default CardAcc;
+export default CashAcc;

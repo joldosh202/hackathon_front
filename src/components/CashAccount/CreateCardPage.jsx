@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { cardContext } from '../contexts/CardContextProvider';
+import { cardContext } from '../../contexts/CardContextProvider';
+import Navbar from '../Navbar/Navbar';
+import { Box, Button, useMediaQuery } from '@chakra-ui/react';
 
 
 const CreateCardPage = () => {
   const { cards, getCards, cardPost } = useContext(cardContext);
+  const [isSmallerThan800] = useMediaQuery('(max-width: 700px)')
 
   const [name, setName] = useState("");
   const [balance, setBalance] = useState(0);
@@ -32,6 +35,10 @@ const CreateCardPage = () => {
 
   return (
     <div>
+      <Navbar/>
+      <Box mt="50px"  display='flex' justifyContent='center' flexDirection='column' alignItems='center'>
+<Box>
+
       <input type="text" className='input-card' placeholder='name' value={name} onChange={(e) => setName(e.target.value)} />
       <input type="text" className='input-card' placeholder='balance' value={balance} onChange={(e) => setBalance(e.target.value)} />
       <select name="" id="" value={currency} onChange={(e) => setCurrency(e.target.value)}>
@@ -48,7 +55,12 @@ const CreateCardPage = () => {
       </select>
       <input type="color" className='input-card' placeholder='color' value={color} onChange={(e) => setColor(e.target.value)} />
       <input type="text" className='input-card' placeholder='icon' value={icon} onChange={(e) => setIcon(e.target.value)} />
-      <button onClick={toPostCard}>Post</button>
+</Box>
+<Box>
+
+      <Button mt='40px' h='55px' bg='#EBBB55' w= {isSmallerThan800 ? '250px' : '437px'} mb='40px'  onClick={toPostCard}>Post</Button>
+</Box>
+      </Box>
     </div>
   );
 };
