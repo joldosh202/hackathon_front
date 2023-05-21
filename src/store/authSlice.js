@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export const register = createAsyncThunk(
   'auth/register',
   async function (
-    { first_name, last_name, email, password, },
+    { first_name, last_name, email, password,navigate },
     { rejectWithValue, dispatch }
   ) {
     try {
@@ -17,7 +17,7 @@ export const register = createAsyncThunk(
       register.append("password", password);
 
       const response = await axios.post(
-        'http://35.237.122.86:8080/api/v1/auth/register',
+        'https://35.237.122.86:8443/api/v1/auth/register',
         register,
         {
           headers: {
@@ -31,7 +31,7 @@ export const register = createAsyncThunk(
       // if (!response.ok) {
       //   throw new Error("Can't add task. Server error.");
       // }
-      useNavigate('/verify')
+      navigate('/verify ')
 
       const data = await response.json();
       dispatch(register(data));
@@ -43,7 +43,7 @@ export const register = createAsyncThunk(
 );
 export const login = createAsyncThunk(
   'auth/login',
-  async function ({ email, password }, { rejectWithValue, dispatch }) {
+  async function ({ email, password,navigate }, { rejectWithValue, dispatch }) {
     try {
       const loginData = new FormData();
       loginData.append("email", email);
@@ -54,7 +54,7 @@ export const login = createAsyncThunk(
       console.log(loginData);
 
       const response = await axios.post(
-        'http://35.237.122.86:8080/api/v1/auth/authenticate',
+        'https://35.237.122.86:8443/api/v1/auth/authenticate',
           loginData,
           {
             headers: {
@@ -67,16 +67,16 @@ export const login = createAsyncThunk(
       const data2 = JSON.parse(response.config.data);
       const token = response.data.token;
       const emailValue = data2.email;
-
+      
       localStorage.setItem("token", JSON.stringify(token));
       localStorage.setItem("username", emailValue);
-
+      
       // if (!response.ok) {
-      //   throw new Error("Can't add task. Server error.");
-      // }
-
-      const data = await response.json();
-      dispatch(login(data));
+        //   throw new Error("Can't add task. Server error.");
+        // }
+        navigate("/")
+        const data = await response.json();
+        dispatch(login(data));
     } catch (error) {
       console.log(error);
       return rejectWithValue(error);
@@ -86,8 +86,9 @@ export const login = createAsyncThunk(
 
 export const verifyEmail = createAsyncThunk(
   'auth/verify',
-  async function ( url, { rejectWithValue, dispatch }) {
+  async function ( {tokenr, navigate}, { rejectWithValue, dispatch }) {
     try {
+      
       // const token = new FormData;
 
       // token.append("token", token);
@@ -96,15 +97,40 @@ export const verifyEmail = createAsyncThunk(
 // const tokenjson = JSON.stringify(token)
 // const bearer = `Bearer ${token1}`
       const response = await axios.get(
-        `${url}`,
-        
+        `https://35.237.122.86:8443/api/v1/auth/verify-email?`,
+        {
+          params: {
+            token: tokenr,
+          },
+        }
       );
-      console.log(response);
 
-      const data = await response.json();
+      console.log(response);
+        navigate('/login')
+      const data = await response
+      console.log(data);
       dispatch(verifyEmail(data));
+      
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const logout = createAsyncThunk(
+  'auth/logout',
+  async function ( navigate, { rejectWithValue, dispatch }) {
+    try {
+      
+// const tokenjson = JSON.stringify(token)
+// const bearer = `Bearer ${token1}`
+localStorage.removeItem("token");
+    localStorage.removeItem("username");
+        navigate('/login')
+      dispatch(logout());
+      
+    } catch (error) {
+      return rejectWithValue(error);
     }
   }
 );
@@ -131,6 +157,8 @@ const authSlice = createSlice({
     },
     authAgainUser(state, action) {
     },
+    logout(state, action) {
+    },
   },
   extraReducers: builder => {
     builder.addCase(register.pending);
@@ -142,10 +170,15 @@ const authSlice = createSlice({
       // console.log(action.payload);
     })
     builder.addCase(login.fulfilled, (state, action) => {
+        // useNavigate("/")
+        // const navigate = useNavigate()
+        // navigate("/", { replace: true })
+
     });
     builder.addCase(verifyEmail.pending);
     builder.addCase(verifyEmail.rejected);
     builder.addCase(verifyEmail.fulfilled, (state, action) => {});
+    
   },
 });
 

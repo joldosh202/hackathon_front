@@ -21,7 +21,7 @@ const UpdateBalance = () => {
   };
   return (
     <div>
-      <Input type="number" placeholder="balance" value={balance} onChange={(e) => setBal(e.target.value)}></Input>
+      <Input type="number" placeholder="balance" value={balance} onChange={(e) => setBal(e.target.value)}/>
       <Button onClick={update}> update</Button>
 
     </div>

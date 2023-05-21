@@ -11,6 +11,7 @@ import keyIcon from "../imgs/house-key 1.svg";
 import cardIcon from "../imgs/credit-card 1.svg";
 import productsIcon from "../imgs/healthy-food 1.svg";
 import walletIcon from "../imgs/wallet 1 (1).svg";
+import { Link } from 'react-router-dom';
 
 const FinTarget = () => {
   return (
@@ -28,9 +29,12 @@ const FinTarget = () => {
             <div className="fin-target_left_text">
               Создавайте неограниченное количество категорий, чтобы отслеживать, что для вас важно. Чем бы вы ни занимались, мы можем помочь вам спланировать это.
             </div>
+            <Link to="/cardlist">
+
             <button className="fin-target_left_btn">
               Создать счет
             </button>
+            </Link>
           </div>
           <div className="fin-target_right">
             <div className="fin-target_right_date">

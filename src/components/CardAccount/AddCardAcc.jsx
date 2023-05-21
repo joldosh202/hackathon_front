@@ -2,6 +2,7 @@ import { Box, Button, Input } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { addCardAcc } from '../../store/CardAccSlice';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const AddCardAcc = () => {
   const [name, setName] = useState('');
@@ -31,12 +32,14 @@ const AddCardAcc = () => {
         cardNumber,
         paymentSystem,
         cvv,
+        navigate,
       })
       );
     };
   //   useEffect(() => {
   //     addCard()
   // },[])
+  const navigate = useNavigate()
   return (
     <Box>
       <Input type="text" placeholder="name"  value={name}

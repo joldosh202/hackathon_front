@@ -14,7 +14,7 @@ const CardAcc = ({
   cardHolderName,
   bankName,
   cardNumber,
-  cardType,
+  paymentSystem,
   cvv,
 }) => {
 
@@ -28,15 +28,15 @@ const CardAcc = ({
       {/* <Box>Цвет: {color}</Box>
       <Box>Иконка: {icon}</Box> */}
       {/* <Box>{cardHolderName}</Box>
-      <Box>{bankName}</Box>
-      <Box>{cardNumber}</Box> */}
-      <Box>Тип Карты: {cardType}</Box>
+      <Box>{bankName}</Box> */}
+      {/* <Box>{cardNumber}</Box> */}
+      <Box>Тип Карты: {paymentSystem}</Box>
       {/* <Box>{cvv}</Box> */}
       {/* <Link to={`/updatebalance/${id}`}>
         <Button >update balance</Button>
       </Link> */}
       <Link to={`/onecard/${id}`}>
-      <Button>see</Button>
+      <Button>Подробнее</Button>
       </Link>
     </Box>
   );

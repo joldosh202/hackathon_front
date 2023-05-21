@@ -5,10 +5,17 @@ import {
   Flex,
   Grid,
   GridItem,
+  IconButton,
   Image,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Wrap,
+  useMediaQuery,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import { HamburgerIcon } from '@chakra-ui/icons';
 const Budget = () => {
   const budgetIcon = {
     display: 'flex',
@@ -19,12 +26,56 @@ const Budget = () => {
     bg: '#9FE3D7',
     borderRadius: '75px',
   };
+
+  const [isSmallerThan800] = useMediaQuery('(max-width: 1100px)')
+
   return (
     <Box>
+      {isSmallerThan800 ? 
+      <Menu >
+      <Box display='flex'>
+
+      <Box
+          ml="20"
+          as="main"
+          colSpan="1"
+          h="10"
+          display="flex"
+          height="50px"
+          width="108px"
+          alignItems="center"
+          justifyContent="center"
+          pb="17px"
+          >
+          <Image src={require('../imgs/лого (1).png')} />
+        </Box>
+<MenuButton
+  as={IconButton}
+  aria-label='Options'
+  icon={<HamburgerIcon />}
+  variant='outline'
+/>
+<MenuList>
+    <MenuItem >
+    Бюджет
+    </MenuItem>
+    <MenuItem  >
+    Финансовые цели
+    </MenuItem>
+    <MenuItem  >
+    Статистика
+    </MenuItem>
+    <MenuItem >
+    Транзакции
+    </MenuItem>
+  </MenuList>
+</Box>
+</Menu>
+      :
       <Grid
-        templateColumns="repeat(7, 1fr)"
-        gap={0}
-        pr="20"
+      templateColumns="repeat(7, 1fr)"
+      gap={0}
+      pr="20"
         pl="20"
         pt="5"
         bg="linear-gradient(270.13deg, rgba(78, 154, 141, 0.46) 0.23%, rgba(54, 140, 125, 0.46) 74.81%, rgba(0, 139, 114, 0.46) 100.17%);"
@@ -53,7 +104,7 @@ const Budget = () => {
           justifyContent="center"
           colSpan="1"
           h="10"
-        >
+          >
           <Box color="#26564E" fontSize="20px" fontWeight="700">
             Бюджет
           </Box>
@@ -95,6 +146,7 @@ const Budget = () => {
           </Box>
         </GridItem>
       </Grid>
+      }
       <Box ml="130px">
         {/* <Flex direction="column" alignItems="center"> */}
         <Box textAlign="center" pr="100px" mt="30px">
@@ -226,7 +278,11 @@ const Budget = () => {
           <Box textAlign="center" fontSize="30px" mb="30px" fontWeight="700">
             Кредиты
           </Box>
-          <Flex maxWidth="800px" justify="space-between" wrap="wrap">
+          {/* <Wrap> */}
+
+          <Flex  justify="space-between" wrap="wrap">
+            {/* <Box> */}
+
             <Box display="flex" alignItems="center" flexDirection="column">
               <Box>
                 <Image src={require('../BudgetIcons/optima 1 (1).png')} />
@@ -248,10 +304,12 @@ const Budget = () => {
                 pb="15px"
                 w="20px"
                 src={require('../BudgetIcons/плюс (4).png')}
-              />
+                />
               <Box fontWeight="700">Категория</Box>
             </Box>
+            {/* </Box> */}
           </Flex>
+                {/* </Wrap> */}
         </Box>
       </Box>
     </Box>

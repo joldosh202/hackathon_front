@@ -10,6 +10,9 @@ import UpdateBalance from './components/CardAccount/UpdateBalance';
 import CardAccList from './components/CardAccount/CardAccList';
 import VerifyEmail from './components/auth/VerifyEmail';
 import OneCard from './components/CardAccount/OneCard';
+import SubtractCard from './components/CardAccount/SubtractCard';
+import AddBal from './components/CardAccount/AddBal';
+import Transfer from './components/CardAccount/Transfer';
 
 const MainRoutes = () => {
   return (
@@ -24,6 +27,10 @@ const MainRoutes = () => {
       <Route path="/onecard/:id" element={<OneCard />} />
       <Route path="/cardlist" element={<CardAccList />} />
       <Route path="/verify" element={<VerifyEmail />} />
+      <Route path="/subtractcard/:id" element={<SubtractCard />} />
+      <Route path="/addcardbal/:id" element={<AddBal />} />
+      <Route path="/transfercard/:id" element={<Transfer />} />
+
     </Routes>
   );
 };

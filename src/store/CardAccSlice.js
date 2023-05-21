@@ -13,7 +13,7 @@ export const getCards = createAsyncThunk(
           Authorization,
         },
       };
-      const response = await axios.get(`http://35.237.122.86:8080/api/v1/card-account`,config);
+      const response = await axios.get(`https://35.237.122.86:8443/api/v1/card-account`,config);
       // if (!response) {
       //   throw new Error('Server Error');
       // }
@@ -40,7 +40,7 @@ export const getOneCard = createAsyncThunk(
           Authorization,
         },
       };
-      const response = await axios.get(`http://35.237.122.86:8080/api/v1/card-account/${id}`,config);
+      const response = await axios.get(`https://35.237.122.86:8443/api/v1/card-account/${id}`,config);
       // if (!response) {
       //   throw new Error('Server Error');
       // }
@@ -82,7 +82,7 @@ export const updateBal = createAsyncThunk(
       // const payl = JSON.stringify(payload)
       // console.log(payl);
       const response = await axios.patch(
-        `http://35.237.122.86:8080/api/v1/card-account/update/${id}/balance`,
+        `https://35.237.122.86:8443/api/v1/card-account/update/${id}/balance`,
         update,config
       );
       console.log(response);
@@ -94,6 +94,124 @@ export const updateBal = createAsyncThunk(
     }
   }
 );
+
+export const subtract = createAsyncThunk(
+  'card/subract',
+  async function ({amount, descrip, accId, accName, category,accType}, { rejectWithValue, dispatch, getState }) {
+    const card = getState().cardAcc.cardacc.find(card => card.id === accId);
+    try {
+      const subt = new FormData()
+      // subt.append('id', accId)
+      subt.append('amount', amount)
+      subt.append('description', descrip)
+      subt.append('accountId', accId)
+      subt.append('accountName', accName)
+      subt.append('categoryId', category)
+      // subt.append('accountType', accType)
+      // subt.append('categoryId', accId)
+
+        console.log(subt);
+console.log(accId);
+
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Bearer ${token}`;
+      const config = {
+        headers: {
+          Authorization,
+          'Content-Type': 'application/json'
+        },
+      };
+      const response = await axios.patch(
+        `https://35.237.122.86:8443/api/v1/card-account/subtract/balance?categoryId=${accId}`,
+        subt,config
+      );
+      console.log(response);
+      // console.log(id);
+      dispatch(subtractBalance({ accId }));
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const addBalance = createAsyncThunk(
+  'card/add',
+  async function ({amount, descrip, accId, accName, category,accType}, { rejectWithValue, dispatch, getState }) {
+    const card = getState().cardAcc.cardacc.find(card => card.id === accId);
+    try {
+      const subt = new FormData()
+      // subt.append('id', accId)
+      subt.append('amount', amount)
+      subt.append('description', descrip)
+      subt.append('accountId', accId)
+      subt.append('accountName', accName)
+      subt.append('categoryId', category)
+      // subt.append('accountType', accType)
+      // subt.append('categoryId', accId)
+
+        console.log(subt);
+console.log(accId);
+
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Bearer ${token}`;
+      const config = {
+        headers: {
+          Authorization,
+          'Content-Type': 'application/json'
+        },
+      };
+      const response = await axios.patch(
+        `https://35.237.122.86:8443/api/v1/card-account/add/balance?categoryId=${accId}`,
+        subt,config
+      );
+      console.log(response);
+      // console.log(id);
+      dispatch(addCardBalance({ accId }));
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const transfer = createAsyncThunk(
+  'card/transfer',
+  async function ({ fromId, toId, accType, amount}, { rejectWithValue, dispatch, getState }) {
+    // const card = getState().cardAcc.cardacc.find(card => card.id === accId);
+    try {
+
+
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Bearer ${token}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+        params:{
+          accountType: accType,
+          amount: amount
+        }
+      };
+    
+      const response = await axios.patch(
+        `https://35.237.122.86:8443/api/v1/card-account/${fromId}/tranfer/${toId}`,
+        {
+          
+        },
+       config
+      );
+      console.log(response);
+      // console.log(id);
+      dispatch(transferBal({fromId}));
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+
 export const addCardAcc = createAsyncThunk(
   'card/addCardAcc',
   async function (
@@ -108,6 +226,7 @@ export const addCardAcc = createAsyncThunk(
       cardNumber,
       paymentSystem,
       cvv,
+      navigate,
     },
     { rejectWithValue, dispatch }
   ) {
@@ -135,7 +254,7 @@ export const addCardAcc = createAsyncThunk(
       };
       console.log(config);
       const response = await axios.post(
-        'http://35.237.122.86:8080/api/v1/card-account',
+        'https://35.237.122.86:8443/api/v1/card-account',
         cardData,
         config
       );
@@ -144,7 +263,7 @@ export const addCardAcc = createAsyncThunk(
       // if (!response.ok) {
       //   throw new Error("Can't add task. Server error.");
       // }
-
+        navigate('/cardlist')
       const data = await response.json()
       dispatch(addCardAccount(data));
       // dispatch(addCardAcc(response.data));
@@ -174,6 +293,21 @@ const cardAccountSlice = createSlice({
       )
         // updated = action.payload
     },
+    subtractBalance(state, action) {
+      const  subt = state.cardacc.find(
+        (card) => card.id === action.payload.id
+      )
+    },
+    addCardBalance(state, action) {
+      const  subt = state.cardacc.find(
+        (card) => card.id === action.payload.id
+      )
+    },
+    transferBal(state, action) {
+      const  transfer = state.cardacc.find(
+        (card) => card.id === action.payload.id
+      )
+    },
   },
   extraReducers: builder => {
     builder.addCase(addCardAcc.pending);
@@ -190,7 +324,8 @@ const cardAccountSlice = createSlice({
       console.log('error');
     });
     builder.addCase(getCards.fulfilled, (state, { payload }) => {
-      state.cardacc.push(...payload)
+      // state.cardacc.push(...payload)
+      state.cardacc = [...payload];
       console.log('success');
     });
     builder.addCase(getOneCard.pending, (state) => {
@@ -206,9 +341,13 @@ const cardAccountSlice = createSlice({
       console.log('success');
     });
 
+    // builder.addCase(subtract.pending, (state) => {})
+    // builder.addCase(subtract.rejected,(state) => {});
+    // builder.addCase(subtract.fulfilled, (state, { payload }) => {});
+
   },
 });
 
-const { addCardAccount,updateBalance } = cardAccountSlice.actions;
+const { addCardAccount,updateBalance,subtractBalance,addCardBalance, transferBal } = cardAccountSlice.actions;
 
 export default cardAccountSlice.reducer;
