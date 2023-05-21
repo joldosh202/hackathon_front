@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { subtract } from '../../store/CardAccSlice';
 import { useDispatch } from 'react-redux';
 import { Box, Button, Input, useMediaQuery } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
+import { addCashBal } from '../../store/cashSlice';
 
-const SubtractBal = () => {
+const AddCashBal = () => {
    const dispatch = useDispatch()
   const [amount,setAmount] = useState('')
   const [descrip,setDescrip] = useState('')
@@ -19,7 +19,7 @@ const SubtractBal = () => {
 //   console.log(id);
   const subtr = async () => {
     await dispatch(
-      subtract({
+      addCashBal({
          amount, descrip,accId, accName, category,accType
       })
     );
@@ -28,22 +28,22 @@ const SubtractBal = () => {
 
    return (
       <Box>
-         <Navbar/>
-         <Box display='flex' flexDirection='column' alignItems='center'>
+        <Navbar/>
+        <Box display='flex' flexDirection='column' alignItems='center'>
 
-<Box mt='50px' w={isSmallerThan800 ? '300px' : '500px'}>
+         <Box w={isSmallerThan800 ? '300px' : '500px'} mt='50px'>
 
 <Input mb='10px' type="number" placeholder="Сумма" value={amount} onChange={(e) => setAmount(e.target.value)}/>
-<Input mb='10px' type="text" placeholder="Описание" value={descrip} onChange={(e) => setDescrip(e.target.value)}/>
+<Input  mb='10px' type="text" placeholder="Описание" value={descrip} onChange={(e) => setDescrip(e.target.value)}/>
 {/* <Input type="number" placeholder="accId" value={id} /> */}
-<Input mb='10px' type="text" placeholder="Название" value={accName} onChange={(e) => setAccName(e.target.value)}/>
+<Input mb='10px' type="text" placeholder="Имя" value={accName} onChange={(e) => setAccName(e.target.value)}/>
 {/* <Input type="number" placeholder="category" value={category} onChange={(e) => setCategory(e.target.value)}/> */}
 {/* <Input type="text" placeholder="accType" value={accType} onChange={(e) => setAccType(e.target.value)}/> */}
-</Box>
-<Button h='55px' bg='#EBBB55' w= {isSmallerThan800 ? '300px' : '500px'} mb='40px' m='20px' onClick={subtr}> update</Button>
          </Box>
+<Button h='55px' bg='#EBBB55' w= {isSmallerThan800 ? '300px' : '500px'} mb='40px' m='20px' onClick={subtr}>Добавить Баланс</Button>
+        </Box>
       </Box>
    );
 };
 
-export default SubtractBal;
+export default AddCashBal;

@@ -29,12 +29,12 @@ const FinTarget = () => {
             <div className="fin-target_left_text">
               Создавайте неограниченное количество категорий, чтобы отслеживать, что для вас важно. Чем бы вы ни занимались, мы можем помочь вам спланировать это.
             </div>
-            <Link to="/cardlist">
+            {/* <Link to="/cardlist"> */}
 
             <button className="fin-target_left_btn">
               Создать счет
             </button>
-            </Link>
+            {/* </Link> */}
           </div>
           <div className="fin-target_right">
             <div className="fin-target_right_date">

@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const getLoans = createAsyncThunk(
-   'loan/getloans',
+export const getCredits = createAsyncThunk(
+   'credit/getcredits',
    async function (_, { rejectWithValue }) {
      try {
        const token = JSON.parse(localStorage.getItem("token"));
@@ -12,7 +12,7 @@ export const getLoans = createAsyncThunk(
            Authorization,
          },
        };
-       const response = await axios.get(`https://35.237.122.86:8443/api/v1/loan`,config);
+       const response = await axios.get(`https://35.237.122.86:8443/api/v1/credit`,config);
        // if (!response) {
        //   throw new Error('Server Error');
        // }
@@ -28,8 +28,8 @@ export const getLoans = createAsyncThunk(
    }
  );
  
- export const getOneLoan = createAsyncThunk(
-   'loan/getoneloan',
+ export const getOneCredit = createAsyncThunk(
+   'credit/getonecredit',
    async function (id, { rejectWithValue }) {
      try {
        const token = JSON.parse(localStorage.getItem("token"));
@@ -39,7 +39,7 @@ export const getLoans = createAsyncThunk(
            Authorization,
          },
        };
-       const response = await axios.get(`https://35.237.122.86:8443/api/v1/loan/${id}`,config);
+       const response = await axios.get(`https://35.237.122.86:8443/api/v1/credit/${id}`,config);
        // if (!response) {
        //   throw new Error('Server Error');
        // }
@@ -55,10 +55,10 @@ export const getLoans = createAsyncThunk(
    }
  );
  
- export const repayloan = createAsyncThunk(
-   'loan/repayloan',
+ export const repaycredit = createAsyncThunk(
+   'credit/repaycredit',
    async function ({id,amount,descrip, accId,accName,accType}, { rejectWithValue, dispatch, getState }) {
-     const loan = getState().cardAcc.cardacc.find(card => card.id === id);
+     const credit = getState().cardAcc.cardacc.find(card => card.id === id);
      try {
        const update = new FormData()
          // update.append('cardId', id)
@@ -80,7 +80,7 @@ export const getLoans = createAsyncThunk(
  
        };
        const response = await axios.post(
-         `https://35.237.122.86:8443/api/v1/loan/${accId}/repay`,
+         `https://35.237.122.86:8443/api/v1/credit/${accId}/repay`,
          update,config
        );
        console.log(response);
@@ -93,54 +93,54 @@ export const getLoans = createAsyncThunk(
    }
  );
  
- export const increaseloan = createAsyncThunk(
-   'loan/increase',
-   async function ({loanId,amount,name,indebtedness,currency,navigate,}, { rejectWithValue, dispatch, getState }) {
-     const loan = getState().loanAcc.loanacc.find(card => card.id === loanId);
-     try {
-       const loanData = new FormData()
-       // subt.append('id', accId)
-       loanData.append('name', name)
+//  export const increaseloan = createAsyncThunk(
+//    'loan/increase',
+//    async function ({loanId,amount,name,indebtedness,currency,navigate,}, { rejectWithValue, dispatch, getState }) {
+//      const loan = getState().loanAcc.loanacc.find(card => card.id === loanId);
+//      try {
+//        const loanData = new FormData()
+//        // subt.append('id', accId)
+//        loanData.append('name', name)
  
-       loanData.append('indebtedness', indebtedness)
-       loanData.append('currency', currency)
-       // subt.append('accountType', accType)
-       // subt.append('categoryId', accId)
+//        loanData.append('indebtedness', indebtedness)
+//        loanData.append('currency', currency)
+//        // subt.append('accountType', accType)
+//        // subt.append('categoryId', accId)
  
-         console.log(loanData);
- console.log(loanId);
+//          console.log(loanData);
+//  console.log(loanId);
  
-       const token = JSON.parse(localStorage.getItem("token"));
-       const Authorization = `Bearer ${token}`;
-       const config = {
-         headers: {
-           Authorization,
-           'Content-Type': 'application/json',
-           params: {
-            amount: amount
-           }
-         },
-       };
-       const response = await axios.patch(
-         `https://35.237.122.86:8443/api/v1/loan/${loanId}/increase-loan`,
-         loanData,
-         {},
-         config
-       );
-       console.log(response);
-       // console.log(id);
-      //  dispatch(subtractBalance({ accId }));
-     } catch (error) {
-       console.log(error);
-       return rejectWithValue(error);
-     }
-   }
- );
+//        const token = JSON.parse(localStorage.getItem("token"));
+//        const Authorization = `Bearer ${token}`;
+//        const config = {
+//          headers: {
+//            Authorization,
+//            'Content-Type': 'application/json',
+//            params: {
+//             amount: amount
+//            }
+//          },
+//        };
+//        const response = await axios.patch(
+//          `https://35.237.122.86:8443/api/v1/loan/${loanId}/increase-loan`,
+//          loanData,
+//          {},
+//          config
+//        );
+//        console.log(response);
+//        // console.log(id);
+//       //  dispatch(subtractBalance({ accId }));
+//      } catch (error) {
+//        console.log(error);
+//        return rejectWithValue(error);
+//      }
+//    }
+//  );
  
  
- export const loanActivity = createAsyncThunk(
-   'loan/activity',
-   async function ( {id,condition}, { rejectWithValue, dispatch, getState }) {
+ export const creditActivity = createAsyncThunk(
+   'credit/activity',
+   async function ( {id,status}, { rejectWithValue, dispatch, getState }) {
      // const card = getState().cardAcc.cardacc.find(card => card.id === accId);
      try {
  
@@ -152,13 +152,13 @@ export const getLoans = createAsyncThunk(
            Authorization,
          },
          params:{
-           condition: condition,
+           status: status,
          }
        };
-       console.log(condition);
+       console.log(status);
      
        const response = await axios.patch(
-         `https://35.237.122.86:8443/api/v1/loan/${id}/activity`,
+         `https://35.237.122.86:8443/api/v1/credit/${id}/activity`,
          {
            
          },
@@ -174,8 +174,8 @@ export const getLoans = createAsyncThunk(
    }
  );
 ;
- export const createLoan = createAsyncThunk(
-   'loan/addloan',
+ export const createCredit = createAsyncThunk(
+   'credit/addcredit',
    async function (
      {
        name,
@@ -189,18 +189,18 @@ export const getLoans = createAsyncThunk(
      try {
        
        
-       const loanData = new FormData()
-       loanData.append('name', name)
+       const creditData = new FormData()
+       creditData.append('name', name)
  
-       loanData.append('indebtedness', indebtedness)
-       loanData.append('currency', currency)
+       creditData.append('indebtedness', indebtedness)
+       creditData.append('currency', currency)
       const test = {
         name: name,
         indebtedness: indebtedness,
         currency: currency,
       }
  console.log(test);
-       console.log(loanData);
+       console.log(creditData);
        const token = JSON.parse(localStorage.getItem("token"));
        const Authorization = `Bearer ${token}`;
        const config = {
@@ -212,8 +212,8 @@ export const getLoans = createAsyncThunk(
        };
        console.log(config);
        const response = await axios.post(
-         'https://35.237.122.86:8443/api/v1/loan',
-         loanData,
+         'https://35.237.122.86:8443/api/v1/credit',
+         creditData,
          
          config
        );
@@ -222,9 +222,9 @@ export const getLoans = createAsyncThunk(
        // if (!response.ok) {
        //   throw new Error("Can't add task. Server error.");
        // }
-         navigate('/loanlist')
+         navigate('/creditlist')
        const data = await response.json()
-       dispatch(addLoan(data));
+       dispatch(addCredit(data));
        // dispatch(addCardAcc(response.data));
      } catch (error) {
        return rejectWithValue(error);
@@ -239,29 +239,29 @@ export const getLoans = createAsyncThunk(
    state.error = action.payload;
  };
  
- const loanSlice = createSlice({
-   name: 'loan',
+ const creditSlice = createSlice({
+   name: 'credit',
    initialState: {
-     loans: [],
-     oneLoan:{}
+     credits: [],
+     oneCredit:{}
    },
    reducers: {
-     addLoan(state, action) {
-       state.loans.push(action.payload);
+     addCredit(state, action) {
+       state.credits.push(action.payload);
      },
      repay(state, action) {
-       const  updated = state.loans.find(
+       const  updated = state.credits.find(
          (card) => card.id === action.payload.id
        )
          // updated = action.payload
      },
      increase(state, action) {
-       const  subt = state.loans.find(
+       const  subt = state.credits.find(
          (card) => card.id === action.payload.id
        )
      },
      activity(state, action) {
-       const  subt = state.loans.find(
+       const  subt = state.credits.find(
          (card) => card.id === action.payload.id
        )
      },
@@ -272,46 +272,46 @@ export const getLoans = createAsyncThunk(
    //   },
    },
    extraReducers: builder => {
-     builder.addCase(createLoan.pending);
-     builder.addCase(createLoan.rejected) 
-     builder.addCase(createLoan.fulfilled, (state, action) => {
-       state.loans = action.payload;
+     builder.addCase(createCredit.pending);
+     builder.addCase(createCredit.rejected) 
+     builder.addCase(createCredit.fulfilled, (state, action) => {
+       state.credits = action.payload;
        console.log(state.cardaccounts);
      });
-     builder.addCase(getLoans.pending, (state) => {
+     builder.addCase(getCredits.pending, (state) => {
        console.log('pending cards');
      })
-     builder.addCase(getLoans.rejected,(state) => {
-       console.log(state.loans);
+     builder.addCase(getCredits.rejected,(state) => {
+       console.log(state.credits);
        console.log('error');
      });
-     builder.addCase(getLoans.fulfilled, (state, { payload }) => {
+     builder.addCase(getCredits.fulfilled, (state, { payload }) => {
        // state.cardacc.push(...payload)
-       state.loans = [...payload];
+       state.credits = [...payload];
        console.log('success');
      });
-     builder.addCase(getOneLoan.pending, (state) => {
+     builder.addCase(getOneCredit.pending, (state) => {
        console.log('pending card');
      })
-     builder.addCase(getOneLoan.rejected,(state) => {
-       console.log(state.oneLoan);
+     builder.addCase(getOneCredit.rejected,(state) => {
+       console.log(state.oneCredit);
        console.log('error');
      });
-     builder.addCase(getOneLoan.fulfilled, (state, { payload }) => {
+     builder.addCase(getOneCredit.fulfilled, (state, { payload }) => {
        // state.oneCard.push(payload)
-       state.oneLoan = payload
+       state.oneCredit = payload
        console.log('success');
      });
-     builder.addCase(loanActivity.pending, (state) => {
+     builder.addCase(creditActivity.pending, (state) => {
       console.log('activity pending');
     })
-    builder.addCase(loanActivity.rejected,(state) => {
-      console.log(state.oneLoan);
+    builder.addCase(creditActivity.rejected,(state) => {
+      console.log(state.oneCredit);
       console.log('error');
     });
-    builder.addCase(loanActivity.fulfilled, (state, { payload }) => {
+    builder.addCase(creditActivity.fulfilled, (state, { payload }) => {
       // state.oneCard.push(payload)
-      state.oneLoan = payload
+      state.oneCredit = payload
       console.log('success');
     });
  
@@ -322,7 +322,7 @@ export const getLoans = createAsyncThunk(
    },
  });
  
- const { addLoan,repay,increase,activity } = loanSlice.actions;
+ const { addCredit,repay,increase,activity } = creditSlice.actions;
  
- export default loanSlice.reducer;
+ export default creditSlice.reducer;
  

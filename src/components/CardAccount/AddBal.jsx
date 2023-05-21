@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { addBalance } from '../../store/CardAccSlice';
 import { useDispatch } from 'react-redux';
-import { Box, Button, Input } from '@chakra-ui/react';
+import { Box, Button, Input, useMediaQuery } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 
 const AddBal = () => {
    const dispatch = useDispatch()
@@ -23,16 +24,24 @@ const AddBal = () => {
       })
     );
   };
+  const [isSmallerThan800] = useMediaQuery('(max-width: 700px)')
+
    return (
       <Box>
-         
-<Input type="number" placeholder="amount" value={amount} onChange={(e) => setAmount(e.target.value)}/>
-<Input type="text" placeholder="descrip" value={descrip} onChange={(e) => setDescrip(e.target.value)}/>
+        <Navbar/>
+        <Box display='flex' flexDirection='column' alignItems='center'>
+
+         <Box w={isSmallerThan800 ? '300px' : '500px'} mt='50px'>
+
+<Input mb='10px' type="number" placeholder="Сумма" value={amount} onChange={(e) => setAmount(e.target.value)}/>
+<Input  mb='10px' type="text" placeholder="Описание" value={descrip} onChange={(e) => setDescrip(e.target.value)}/>
 {/* <Input type="number" placeholder="accId" value={id} /> */}
-<Input type="text" placeholder="accName" value={accName} onChange={(e) => setAccName(e.target.value)}/>
+<Input mb='10px' type="text" placeholder="Название" value={accName} onChange={(e) => setAccName(e.target.value)}/>
 {/* <Input type="number" placeholder="category" value={category} onChange={(e) => setCategory(e.target.value)}/> */}
 {/* <Input type="text" placeholder="accType" value={accType} onChange={(e) => setAccType(e.target.value)}/> */}
-<Button onClick={subtr}> update</Button>
+         </Box>
+<Button h='55px' bg='#EBBB55' w={isSmallerThan800 ? '300px' : '500px'}  mb='40px' m='20px' onClick={subtr}> update</Button>
+        </Box>
       </Box>
    );
 };

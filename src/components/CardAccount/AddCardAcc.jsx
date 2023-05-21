@@ -1,8 +1,9 @@
-import { Box, Button, Input } from '@chakra-ui/react';
+import { Box, Button, Input, Select, useMediaQuery } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { addCardAcc } from '../../store/CardAccSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 
 const AddCardAcc = () => {
   const [name, setName] = useState('');
@@ -39,30 +40,51 @@ const AddCardAcc = () => {
   //   useEffect(() => {
   //     addCard()
   // },[])
+  const [isSmallerThan800] = useMediaQuery('(max-width: 1100px)')
+
   const navigate = useNavigate()
   return (
     <Box>
-      <Input type="text" placeholder="name"  value={name}
+      <Navbar/>
+      <Box display='flex' flexDirection='column' alignItems='center'>
+      <Box w={isSmallerThan800 ? '300px' : '500px'} mt='50px'>
+
+      <Input type="text" placeholder="Название"  value={name} mb="10px"
         onChange={e => setName(e.target.value)}/>
-      <Input type="number" placeholder="balance"  value={balance}
+      <Input type="number" placeholder="Баланс"  value={balance} mb="10px"
         onChange={e => setBalance(e.target.value)}/>
-      <Input type="text" placeholder="currency" value={currency}
-        onChange={e => setCurrency(e.target.value)} />
-      <Input type="text" placeholder="color" value={color}
+      {/* <Input type="text" placeholder="Валюта" value={currency} mb="10px"
+        onChange={e => setCurrency(e.target.value)} /> */}
+        <Select placeholder="Валюта" value={currency}
+        onChange={e => setCurrency(e.target.value)}>
+        <option value='USD'>USD</option>
+        {/* <option value='MASTERCARD'>MASTERCARD</option>
+        <option value='UNIONPAY'>UNIONPAY</option> */}
+      </Select>
+      <Input type="text" placeholder="Цвет" value={color} mb="10px"
         onChange={e => setColor(e.target.value)}/>
-      <Input type="text" placeholder="icon" value={icon}
+      <Input type="text" placeholder="Иконка" value={icon} mb="10px"
         onChange={e => setIcon(e.target.value)}/>
       {/* <Input type="text" placeholder="cardHolderName" value={cardHolderName}
         onChange={e => setCardHolderName(e.target.value)}/>
-      <Input type="text" placeholder="bankName" value={bankName}
+        <Input type="text" placeholder="bankName" value={bankName}
         onChange={e => setBankName(e.target.value)}/>
-      <Input type="number" placeholder="cardNumber" value={cardNumber}
-        onChange={e => setCardNumber(e.target.value)}/> */}
-      <Input type="text" placeholder="paymentSystem" value={paymentSystem}
-        onChange={e => setCardType(e.target.value)} />
+        <Input type="number" placeholder="cardNumber" value={cardNumber}
+      onChange={e => setCardNumber(e.target.value)}/> */}
+      <Select placeholder="Тип Карты" value={paymentSystem}
+        onChange={e => setCardType(e.target.value)}>
+        <option value='VISA'>VISA</option>
+        <option value='MASTERCARD'>MASTERCARD</option>
+        <option value='UNIONPAY'>UNIONPAY</option>
+      </Select>
+
+      {/* <Input type="text" placeholder="paymentSystem" value={paymentSystem}
+        onChange={e => setCardType(e.target.value)} /> */}
       {/* <Input type="text" placeholder="cvv" value={cvv}
         onChange={e => setCvv(e.target.value)}/> */}
-      <Button onClick={addCard}>add</Button>
+        </Box>
+      <Button h='55px' bg='#EBBB55' w={isSmallerThan800 ? '300px' : '500px'}  mb='40px' m='20px' onClick={addCard}>add</Button>
+        </Box>
     </Box>
   );
 };

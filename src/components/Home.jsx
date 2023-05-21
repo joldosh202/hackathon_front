@@ -165,18 +165,18 @@ const Home = () => {
             h="10"
           >
             <Link to='/register'>
-            <Button
-              colorScheme="yellow"
-              w="163px"
-              h="39px"
-              borderRadius="20px"
-              fontSize="20px"
-              fontWeight="500"
-              
+              <Button
+                colorScheme="yellow"
+                w="163px"
+                h="39px"
+                borderRadius="20px"
+                fontSize="20px"
+                fontWeight="500"
+
               >
-              Регистрация
-            </Button>
-              </Link>
+                Регистрация
+              </Button>
+            </Link>
           </GridItem>
           <GridItem
             as="aside"
@@ -187,17 +187,17 @@ const Home = () => {
             justifyContent="center"
             >
             <Link to='/login'>
-            <Button
-              colorScheme="yellow"
-              w="111px"
-              h="39px"
-              borderRadius="20px"
-              fontSize="20px"
-              fontWeight="500"
+              <Button
+                colorScheme="yellow"
+                w="111px"
+                h="39px"
+                borderRadius="20px"
+                fontSize="20px"
+                fontWeight="500"
               >
-              Вход
-            </Button>
-              </Link>
+                Вход
+              </Button>
+            </Link>
           </GridItem>
         </Grid>
         }
@@ -230,17 +230,18 @@ const Home = () => {
                 </Box>
               </Box>
               <Box mt="">
-                
-                <Button
-                  colorScheme="yellow"
-                  w="223px"
-                  h="39px"
-                  borderRadius="20px"
-                  fontWeight="700"
-                >
-                  Создать счет
-                </Button>
-                  
+                <Link to='/cashlist'>
+                  <Button
+                    colorScheme="yellow"
+                    w="223px"
+                    h="39px"
+                    borderRadius="20px"
+                    fontWeight="700"
+
+                  >
+                    Создать счет
+                  </Button>
+                </Link>
               </Box>
             </Box>
           </Flex>
