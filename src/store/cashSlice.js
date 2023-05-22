@@ -97,7 +97,7 @@ export const getOneCash = createAsyncThunk(
 
 export const subtractCash = createAsyncThunk(
   'cash/subtract',
-  async function ({amount, descrip, accId, accName, category,accType}, { rejectWithValue, dispatch, getState }) {
+  async function ({amount, descrip, accId, accName, category,accType,navigate}, { rejectWithValue, dispatch, getState }) {
     const card = getState().cardAcc.cardacc.find(card => card.id === accId);
     try {
       const subt = new FormData()
@@ -125,6 +125,7 @@ console.log(accId);
         `https://35.237.122.86:8443/api/v1/cash-account/subtract/balance?categoryId=${accId}`,
         subt,config
       );
+      // navigate('cashlist')
       console.log(response);
       // console.log(id);
       dispatch(subtractBalance({ accId }));
@@ -137,7 +138,7 @@ console.log(accId);
 
 export const addCashBal = createAsyncThunk(
   'card/add',
-  async function ({amount, descrip, accId, accName, category,accType}, { rejectWithValue, dispatch, getState }) {
+  async function ({amount, descrip, accId, accName, category,accType,navigate}, { rejectWithValue, dispatch, getState }) {
     const card = getState().cardAcc.cardacc.find(card => card.id === accId);
     try {
       const subt = new FormData()
@@ -165,6 +166,7 @@ console.log(accId);
         `https://35.237.122.86:8443/api/v1/cash-account/add/balance?categoryId=${accId}`,
         subt,config
       );
+      // navigate('/cashlist')
       console.log(response);
       // console.log(id);
       dispatch(addCashBalance({ accId }));
@@ -210,6 +212,42 @@ console.log(accId);
 //     }
 //   }
 // );
+
+export const cashLimit = createAsyncThunk(
+  'cash/limit',
+  async function ({ id, limit2}, { rejectWithValue, dispatch, getState }) {
+    // const card = getState().cardAcc.cardacc.find(card => card.id === accId);
+    try {
+
+
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Bearer ${token}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+        params: {
+          limit: limit2
+        }
+      };
+      const params = {
+
+      }
+    
+      const response = await axios.patch(
+        `https://35.237.122.86:8443/api/v1/cash-account/${id}/limit`,
+        {},
+       config
+      );
+      console.log(response);
+      // console.log(id);
+      dispatch(cashAccLimit({id}));
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error);
+    }
+  }
+);
 
 
 export const addCashAcc = createAsyncThunk(
@@ -303,6 +341,11 @@ const cashAccountSlice = createSlice({
         (card) => card.id === action.payload.id
       )
     },
+    cashAccLimit(state, action) {
+      const  subt = state.cashacc.find(
+        (card) => card.id === action.payload.id
+      )
+    },
    //  transferBal(state, action) {
    //    const  transfer = state.cardacc.find(
    //      (card) => card.id === action.payload.id
@@ -341,13 +384,13 @@ const cashAccountSlice = createSlice({
       console.log('success');
     });
 
-    // builder.addCase(subtract.pending, (state) => {})
-    // builder.addCase(subtract.rejected,(state) => {});
-    // builder.addCase(subtract.fulfilled, (state, { payload }) => {});
+    builder.addCase(cashLimit.pending, (state) => {})
+    builder.addCase(cashLimit.rejected,(state) => {});
+    builder.addCase(cashLimit.fulfilled, (state, { payload }) => {});
 
   },
 });
 
-const { addCashAccount,updateBalance,subtractBalance,addCashBalance, transferBal } = cashAccountSlice.actions;
+const { addCashAccount,updateBalance,subtractBalance,addCashBalance, transferBal,cashAccLimit } = cashAccountSlice.actions;
 
 export default cashAccountSlice.reducer;

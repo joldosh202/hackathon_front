@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // import { subtract } from '../../store/CardAccSlice';
 import { useDispatch } from 'react-redux';
 import { Box, Button, Input, useMediaQuery } from '@chakra-ui/react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 // import { useCard } from '../../contexts/CardContextProvider';
 import { subtractCash } from '../../store/cashSlice';
 import Navbar from '../Navbar/Navbar';
@@ -19,10 +19,11 @@ const SubtractCash = () => {
   const accId = Number(id1)
   const [category,setCategory] = useState({accId})
   console.log(accId);
+  const navigate = useNavigate()
   const subtr = async () => {
     await dispatch(
       subtractCash({
-         amount, descrip,accId, accName, category,accType
+         amount, descrip,accId, accName, category,accType,navigate
       })
     );
   };

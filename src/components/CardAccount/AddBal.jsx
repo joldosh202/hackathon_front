@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { addBalance } from '../../store/CardAccSlice';
 import { useDispatch } from 'react-redux';
 import { Box, Button, Input, useMediaQuery } from '@chakra-ui/react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 
 const AddBal = () => {
@@ -17,10 +17,11 @@ const AddBal = () => {
   const accId = Number(id1)
   const [category,setCategory] = useState({accId})
 //   console.log(id);
+const navigate = useNavigate()
   const subtr = async () => {
     await dispatch(
       addBalance({
-         amount, descrip,accId, accName, category,accType
+         amount, descrip,accId, accName, category,accType, navigate
       })
     );
   };

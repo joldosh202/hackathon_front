@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import CardAcc from './CardAcc';
 import axios from 'axios';
@@ -43,6 +43,8 @@ const CashAccList = () => {
 //   await dispatch(logout(navigate))
 // }
   
+
+
   return (
     <div>
       <Navbar/>
@@ -58,11 +60,10 @@ const CashAccList = () => {
           <Box fontSize='30px'>Наличный счет</Box>
           <Box>Всего: 0 $</Box>
         </Box>
-          <Box p='10px'  flexWrap='wrap' maxHeight='1000px' display='flex' w='100%' h={isSmallerThan800 ? "600px" : '200px'} bg='gray.100' filter="drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.25));">
+          <Box p='10px'  flexWrap='wrap' maxHeight='1000px' display='flex' w='100%' h={isSmallerThan800 ? "600px" : '200px'} bg='gray.100' filter="drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.25));" >
       {cards.map(data => {
         return <CashAcc key={data.id} {...data} />;
       })}
-
           </Box>
       <Link to="/card-create">
         <Button  mt='20px' ml='10px'>добавить наличный счет</Button>

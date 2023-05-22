@@ -58,6 +58,8 @@ const AddCardAcc = () => {
         <Select placeholder="Валюта" value={currency}
         onChange={e => setCurrency(e.target.value)}>
         <option value='USD'>USD</option>
+        <option value='EUR'>EUR</option>
+        <option value='KZT'>KZT</option>
         {/* <option value='MASTERCARD'>MASTERCARD</option>
         <option value='UNIONPAY'>UNIONPAY</option> */}
       </Select>

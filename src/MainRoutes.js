@@ -28,6 +28,8 @@ import CreditRepay from './components/Credit/CreditRepay';
 import SubtractCash from './components/CashAccount/SubtractCash';
 import AddCashBal from './components/CashAccount/AddCashBal';
 import ProfilePage from './components/ProfilePage';
+import CardLimit from './components/CardAccount/CardLimit';
+import CashLimit from './components/CashAccount/CashLimit';
 
 const MainRoutes = () => {
   return (
@@ -62,9 +64,8 @@ const MainRoutes = () => {
       <Route path="/onecredit/:id" element={<OneCredit />} />
       <Route path="/subtractcash/:id" element={<SubtractCash />} />
       <Route path="/addcashbal/:id" element={<AddCashBal />} />
-
-
-
+      <Route path="/cardlimit/:id" element={<CardLimit />} />
+      <Route path="/cashlimit/:id" element={<CashLimit />} />
       <Route path="/profile" element={<ProfilePage />} />
     </Routes>
   );

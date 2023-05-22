@@ -21,7 +21,7 @@ const CardAcc = ({
   const dispatch = useDispatch()
   
   return (
-    <Box p='20px' h='180px' mr='10px' bg='#EBBB55' borderRadius='20px' >
+    <Box  p='20px' h='180px' mr='10px' bg='#EBBB55' borderRadius='20px' >
       <Box>Имя карты: {name}</Box>
       <Box>баланс: {balance}</Box>
       <Box>Валюта: {currency}</Box>

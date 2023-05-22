@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { HamburgerIcon } from '@chakra-ui/icons';
+import CreditList from './Credit/CreditList';
 const Budget = () => {
   const budgetIcon = {
     display: 'flex',
@@ -277,14 +278,12 @@ const Budget = () => {
         </Box>
         {/* </Flex> */}
         {/* ////////////////////////////// */}
-        <Box mt="30px" w="600px">
-          <Box textAlign="center" fontSize="30px" mb="30px" fontWeight="700">
+        <Box mt="30px" pr='170px'>
+          {/* <Box textAlign="center" fontSize="30px" mb="30px" fontWeight="700">
             Кредиты
-          </Box>
-          {/* <Wrap> */}
-
-          <Flex  justify="space-between" wrap="wrap">
-            {/* <Box> */}
+          </Box> */}
+            <CreditList/>
+          {/* <Flex  justify="space-between" wrap="wrap">
 
             <Box display="flex" alignItems="center" flexDirection="column">
               <Box>
@@ -310,9 +309,7 @@ const Budget = () => {
                 />
               <Box fontWeight="700">Категория</Box>
             </Box>
-            {/* </Box> */}
-          </Flex>
-                {/* </Wrap> */}
+          </Flex> */}
         </Box>
       </Box>
     </Box>

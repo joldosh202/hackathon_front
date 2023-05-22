@@ -20,6 +20,7 @@ import FinTarget from './FinTarget';
 import { Link } from 'react-router-dom';
 import StatsHome from './StatsHome';
 import { HamburgerIcon } from '@chakra-ui/icons';
+import Footer from './Footer';
 const Home = () => {
   const categStyles = {
     display: 'flex',
@@ -247,7 +248,7 @@ const Home = () => {
           </Flex>
         </Box>
         {/* ///////////////////// */}
-        <Box>
+        <Box >
           {
             isSmallerThan800 ? 
             null
@@ -267,10 +268,6 @@ const Home = () => {
             top="100px"
             src={require('../imgs/Ellipse 45.png')}
           />
-          <Image position="absolute"
-            right="816px"
-            top="396px"
-            src={require('../imgs/Group 37.png')}/>
           <Image
             position="absolute"
             top="150px"
@@ -283,6 +280,13 @@ const Home = () => {
             top="360px"
             src={require('../imgs/Group 43.png')}
           />
+          <Box position="absolute"
+            left="658px"
+            top="396px">
+
+          <Image 
+            src={require('../imgs/Group 37.png')}/>
+            </Box>
           <Image
             position="absolute"
             left="780px"
@@ -404,6 +408,7 @@ const Home = () => {
       </Box>
       <FinTarget />
       <StatsHome />
+      <Footer/>
     </Box>
   );
 };

@@ -97,7 +97,7 @@ export const updateBal = createAsyncThunk(
 
 export const subtract = createAsyncThunk(
   'card/subract',
-  async function ({amount, descrip, accId, accName, category,accType}, { rejectWithValue, dispatch, getState }) {
+  async function ({amount, descrip, accId, accName, category,accType, navigate}, { rejectWithValue, dispatch, getState }) {
     const card = getState().cardAcc.cardacc.find(card => card.id === accId);
     try {
       const subt = new FormData()
@@ -125,6 +125,7 @@ console.log(accId);
         `https://35.237.122.86:8443/api/v1/card-account/subtract/balance?categoryId=${accId}`,
         subt,config
       );
+      // navigate('/cashlist')
       console.log(response);
       // console.log(id);
       dispatch(subtractBalance({ accId }));
@@ -137,7 +138,7 @@ console.log(accId);
 
 export const addBalance = createAsyncThunk(
   'card/add',
-  async function ({amount, descrip, accId, accName, category,accType}, { rejectWithValue, dispatch, getState }) {
+  async function ({amount, descrip, accId, accName, category,accType, navigate}, { rejectWithValue, dispatch, getState }) {
     const card = getState().cardAcc.cardacc.find(card => card.id === accId);
     try {
       const subt = new FormData()
@@ -166,6 +167,7 @@ console.log(accId);
         subt,config
       );
       console.log(response);
+      // navigate('/cashlist')
       // console.log(id);
       dispatch(addCardBalance({ accId }));
     } catch (error) {
@@ -187,6 +189,8 @@ export const transfer = createAsyncThunk(
       const config = {
         headers: {
           Authorization,
+          'Content-Type': 'application/json'
+
         },
         params:{
           accountType: accType,
@@ -196,14 +200,48 @@ export const transfer = createAsyncThunk(
     
       const response = await axios.patch(
         `https://35.237.122.86:8443/api/v1/card-account/${fromId}/tranfer/${toId}`,
-        {
-          
-        },
+        {},
        config
       );
       console.log(response);
       // console.log(id);
       dispatch(transferBal({fromId}));
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const limit = createAsyncThunk(
+  'card/limit',
+  async function ({ id, limit2}, { rejectWithValue, dispatch, getState }) {
+    // const card = getState().cardAcc.cardacc.find(card => card.id === accId);
+    try {
+
+
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Bearer ${token}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+        params: {
+          limit: limit2
+        }
+      };
+      const params = {
+
+      }
+    
+      const response = await axios.patch(
+        `https://35.237.122.86:8443/api/v1/card-account/${id}/limit`,
+        {},
+       config
+      );
+      console.log(response);
+      // console.log(id);
+      dispatch(limitCard({id}));
     } catch (error) {
       console.log(error);
       return rejectWithValue(error);
@@ -298,7 +336,13 @@ const cardAccountSlice = createSlice({
         (card) => card.id === action.payload.id
       )
     },
+
     addCardBalance(state, action) {
+      const  subt = state.cardacc.find(
+        (card) => card.id === action.payload.id
+      )
+    },
+    limitCard(state, action) {
       const  subt = state.cardacc.find(
         (card) => card.id === action.payload.id
       )
@@ -341,13 +385,13 @@ const cardAccountSlice = createSlice({
       console.log('success');
     });
 
-    // builder.addCase(subtract.pending, (state) => {})
-    // builder.addCase(subtract.rejected,(state) => {});
-    // builder.addCase(subtract.fulfilled, (state, { payload }) => {});
+    builder.addCase(limit.pending, (state) => {})
+    builder.addCase(limit.rejected,(state) => {});
+    builder.addCase(limit.fulfilled, (state, { payload }) => {});
 
   },
 });
 
-const { addCardAccount,updateBalance,subtractBalance,addCardBalance, transferBal } = cardAccountSlice.actions;
+const { addCardAccount,updateBalance,subtractBalance,addCardBalance, transferBal,limitCard } = cardAccountSlice.actions;
 
 export default cardAccountSlice.reducer;

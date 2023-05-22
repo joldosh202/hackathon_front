@@ -54,6 +54,9 @@ const logoutfunc = async () => {
       {cards.map(card => {
         return <CardAcc key={card.id} {...card} />;
       })}
+      {/* <Box>
+        adsfadgdsfgvs
+      </Box> */}
 
           </Box>
       <Link to="/addcard">
