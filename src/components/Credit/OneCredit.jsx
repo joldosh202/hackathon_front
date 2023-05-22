@@ -52,34 +52,40 @@ import { creditActivity, getOneCredit } from '../../store/creditSlice';
     if (!data) {
        return <div>Loading...</div>; // Render a loading state while data is being fetched
      }
- 
+     const font = {
+      fontSize: "23px",
+      mb: "10px"
+    }
     return (
  <Box>
  <Navbar/>
      <Box p='20px' >
-       <Box>Имя: { data.data && data.data.name}</Box>
-       <Box>indebtedness: {data.data && data.data.indebtedness}</Box>
-       <Box>Валюта: {data.data && data.data.currency}</Box>
+      <Box borderWidth='3px' borderColor="#EBBB55" width='90%' pl={isSmallerThan800 ? '15px' : '100px'} pb='40px' pt='50px' ml={isSmallerThan800 ? '15px' : '100px'} mt='50px'>
+
+       <Box sx={font}>Имя: { data.data && data.data.name}</Box>
+       <Box sx={font}>Задолжность: {data.data && data.data.indebtedness}</Box>
+       <Box sx={font}>Валюта: {data.data && data.data.currency}</Box>
        {/* <Link to={`/updatebalance/${id}`}>
          <Button >update balance</Button>
-       </Link> */}
+        </Link> */}
        <Link to={`/repaycredit/${id}`}>
-         <Button >repay</Button>
+         <Button bg="#EBBB55" mr='10px'>Погасить</Button>
        </Link>
+        </Box>
        {/* <Link to={`/incloan/${id}`}>
          <Button >increase loan</Button>
        </Link> */}
-       <Select>
+       {/* <Select>
          <option value={status}>
             active
          </option>
          <option value={status} onChange={() => setCond(false)}>
             unactive
          </option>
-       </Select>
-       <Button onClick={activity}>
+       </Select> */}
+       {/* <Button onClick={activity}>
          set activity
-       </Button>
+       </Button> */}
        {/* <Link to={`/transfercard/${id}`}>
          <Button >transfer</Button>
        </Link> */}

@@ -222,7 +222,7 @@ export const getLoans = createAsyncThunk(
        // if (!response.ok) {
        //   throw new Error("Can't add task. Server error.");
        // }
-         navigate('/loanlist')
+         navigate('/cashlist')
        const data = await response.json()
        dispatch(addLoan(data));
        // dispatch(addCardAcc(response.data));

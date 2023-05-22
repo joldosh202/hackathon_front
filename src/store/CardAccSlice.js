@@ -97,7 +97,7 @@ export const updateBal = createAsyncThunk(
 
 export const subtract = createAsyncThunk(
   'card/subract',
-  async function ({amount, descrip, accId, accName, category,accType}, { rejectWithValue, dispatch, getState }) {
+  async function ({amount, descrip, accId, accName, category,accType, navigate}, { rejectWithValue, dispatch, getState }) {
     const card = getState().cardAcc.cardacc.find(card => card.id === accId);
     try {
       const subt = new FormData()
@@ -125,6 +125,7 @@ console.log(accId);
         `https://35.237.122.86:8443/api/v1/card-account/subtract/balance?categoryId=${accId}`,
         subt,config
       );
+      // navigate('/cashlist')
       console.log(response);
       // console.log(id);
       dispatch(subtractBalance({ accId }));
@@ -137,7 +138,7 @@ console.log(accId);
 
 export const addBalance = createAsyncThunk(
   'card/add',
-  async function ({amount, descrip, accId, accName, category,accType}, { rejectWithValue, dispatch, getState }) {
+  async function ({amount, descrip, accId, accName, category,accType, navigate}, { rejectWithValue, dispatch, getState }) {
     const card = getState().cardAcc.cardacc.find(card => card.id === accId);
     try {
       const subt = new FormData()
@@ -166,6 +167,7 @@ console.log(accId);
         subt,config
       );
       console.log(response);
+      // navigate('/cashlist')
       // console.log(id);
       dispatch(addCardBalance({ accId }));
     } catch (error) {

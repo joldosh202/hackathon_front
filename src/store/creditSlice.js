@@ -222,7 +222,7 @@ export const getCredits = createAsyncThunk(
        // if (!response.ok) {
        //   throw new Error("Can't add task. Server error.");
        // }
-         navigate('/creditlist')
+         navigate('/cashlist')
        const data = await response.json()
        dispatch(addCredit(data));
        // dispatch(addCardAcc(response.data));

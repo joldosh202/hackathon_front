@@ -25,16 +25,7 @@ const CashAcc = ({
       <Box>Имя карты: {name}</Box>
       <Box>баланс: {balance}</Box>
       <Box>Валюта: {currency}</Box>
-      {/* <Box>Цвет: {color}</Box>
-      <Box>Иконка: {icon}</Box> */}
-      {/* <Box>{cardHolderName}</Box>
-      <Box>{bankName}</Box> */}
-      {/* <Box>{cardNumber}</Box> */}
       <Box>Тип Счета: {accountType}</Box>
-      {/* <Box>{cvv}</Box> */}
-      {/* <Link to={`/updatebalance/${id}`}>
-        <Button >update balance</Button>
-      </Link> */}
       <Link to={`/onecash/${id}`}>
       <Button mt='10px'>Подробнее</Button>
       </Link>

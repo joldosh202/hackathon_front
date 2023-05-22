@@ -1,9 +1,10 @@
-import { Box, Button, Input } from '@chakra-ui/react';
+import { Box, Button, Input, Select, useMediaQuery } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { addCardAcc } from '../../store/CardAccSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { createLoan, repayloan } from '../../store/loanSlice';
+import Navbar from '../Navbar/Navbar';
 
 const LoanRepay = () => {
   const [amount, setAmount] = useState('');
@@ -32,18 +33,38 @@ const LoanRepay = () => {
   //     addCard()
   // },[])
   const navigate = useNavigate()
+  const [isSmallerThan800] = useMediaQuery('(max-width: 700px)')
+
   return (
-    <Box>
-      <Input type="number" placeholder="amount"  value={amount}
+    <>
+      <Navbar/>
+      
+        
+      <Box display='flex' flexDirection='column' alignItems='center'>
+<Box w={isSmallerThan800 ? '300px' : '500px'} mt='50px'>
+
+
+      <Input mb='10px' type="number" placeholder="Сумма"  value={amount}
         onChange={e => setAmount(e.target.value)}/>
-      <Input type="text" placeholder="descr" value={descrip}
+      <Input mb='10px' type="text" placeholder="Описание" value={descrip}
         onChange={e => setDescrip(e.target.value)} />
-        <Input type="text" placeholder="accName" value={accName}
+        <Input mb='10px' type="text" placeholder="Название" value={accName}
         onChange={e => setAccName(e.target.value)} />
-        <Input type="text" placeholder="accType" value={accType}
-        onChange={e => setAccType(e.target.value)} />
-      <Button onClick={repay}>add</Button>
-    </Box>
+        {/* <Input type="text" placeholder="accType" value={accType}
+        onChange={e => setAccType(e.target.value)} /> */}
+        <Select  mb='10px' placeholder="Тип Счета" value={accType}
+        onChange={e => setAccType(e.target.value)}>
+        <option value='CARD'>Card</option>
+        <option value='CASH'>Cash</option>
+      </Select>
+</Box>
+      <Button h='55px' bg='#EBBB55' w= {isSmallerThan800 ? '300px' : '500px'} mb='40px' m='20px' onClick={repay}>Погасить</Button>
+        </Box>
+  
+      
+    
+    
+    </>
   );
 };
 
