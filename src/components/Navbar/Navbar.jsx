@@ -38,7 +38,9 @@ const Navbar = () => {
           justifyContent="center"
           pb="17px"
           >
+            <Link to='/'>
           <Image src={require('../../imgs/лого (1).png')} />
+            </Link>
         </Box>
 <MenuButton
   as={IconButton}

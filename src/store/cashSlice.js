@@ -213,6 +213,42 @@ console.log(accId);
 //   }
 // );
 
+export const cashLimit = createAsyncThunk(
+  'cash/limit',
+  async function ({ id, limit2}, { rejectWithValue, dispatch, getState }) {
+    // const card = getState().cardAcc.cardacc.find(card => card.id === accId);
+    try {
+
+
+      const token = JSON.parse(localStorage.getItem("token"));
+      const Authorization = `Bearer ${token}`;
+      const config = {
+        headers: {
+          Authorization,
+        },
+        params: {
+          limit: limit2
+        }
+      };
+      const params = {
+
+      }
+    
+      const response = await axios.patch(
+        `https://35.237.122.86:8443/api/v1/cash-account/${id}/limit`,
+        {},
+       config
+      );
+      console.log(response);
+      // console.log(id);
+      dispatch(cashAccLimit({id}));
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error);
+    }
+  }
+);
+
 
 export const addCashAcc = createAsyncThunk(
   'cash/addCashAcc',
@@ -305,6 +341,11 @@ const cashAccountSlice = createSlice({
         (card) => card.id === action.payload.id
       )
     },
+    cashAccLimit(state, action) {
+      const  subt = state.cashacc.find(
+        (card) => card.id === action.payload.id
+      )
+    },
    //  transferBal(state, action) {
    //    const  transfer = state.cardacc.find(
    //      (card) => card.id === action.payload.id
@@ -343,13 +384,13 @@ const cashAccountSlice = createSlice({
       console.log('success');
     });
 
-    // builder.addCase(subtract.pending, (state) => {})
-    // builder.addCase(subtract.rejected,(state) => {});
-    // builder.addCase(subtract.fulfilled, (state, { payload }) => {});
+    builder.addCase(cashLimit.pending, (state) => {})
+    builder.addCase(cashLimit.rejected,(state) => {});
+    builder.addCase(cashLimit.fulfilled, (state, { payload }) => {});
 
   },
 });
 
-const { addCashAccount,updateBalance,subtractBalance,addCashBalance, transferBal } = cashAccountSlice.actions;
+const { addCashAccount,updateBalance,subtractBalance,addCashBalance, transferBal,cashAccLimit } = cashAccountSlice.actions;
 
 export default cashAccountSlice.reducer;

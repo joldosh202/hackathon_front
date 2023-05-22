@@ -44,7 +44,7 @@ const OneCard = () => {
    return (
 <Box>
 <Navbar/>
-    <Box borderWidth='3px' borderColor="#EBBB55" width='90%' pl="100px" pb='40px' pt='50px' ml='100px' mt='50px'  >
+    <Box borderWidth='3px' borderColor="#EBBB55" width='90%' pl={isSmallerThan800 ? '10px' : '100px'} pb='40px' pt='50px' ml={isSmallerThan800 ? '10px' : '100px'} mt='50px'  >
       <Box sx={font}>Имя карты: { data.data && data.data.name}</Box>
       <Box sx={font}>баланс: {data.data && data.data.balance}</Box>
       <Box sx={font}>Валюта: {data.data && data.data.currency}</Box>
@@ -64,8 +64,11 @@ const OneCard = () => {
       <Link to={`/addcardbal/${id}`}>
         <Button bg="#EBBB55" mr='10px' >Добавить Баланс</Button>
       </Link>
-      <Link to={`/transfercard/${id}`}>
+      {/* <Link to={`/transfercard/${id}`}>
         <Button bg="#EBBB55"mr='10px'>Перевод</Button>
+      </Link> */}
+      <Link to={`/cardlimit/${id}`}>
+        <Button bg="#EBBB55"mr='10px'>лимит</Button>
       </Link>
     </Box>
 </Box>

@@ -17,7 +17,7 @@ const Transfer = () => {
   const transf = async () => {
     await dispatch(
       transfer({
-         amount,fromId, toId,accType
+         amount: Number(amount),fromId, toId,accType
       })
     );
   };

@@ -65,10 +65,10 @@ import Navbar from '../Navbar/Navbar';
        <Link to={`/addcashbal/${id}`}>
          <Button bg="#EBBB55" mr='10px'>Добавить Баланс</Button>
        </Link>
+       <Link to={`/cashlimit/${id}`}>
+         <Button  bg="#EBBB55" mr='10px'>лимит</Button>
+       </Link>
         </Box>
-       {/* <Link to={`/transfercard/${id}`}>
-         <Button >transfer</Button>
-       </Link> */}
      </Box>
  </Box>
     );
